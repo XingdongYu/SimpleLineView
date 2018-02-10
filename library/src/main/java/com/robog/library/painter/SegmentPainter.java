@@ -132,7 +132,7 @@ public class SegmentPainter extends AbsPainter {
                 float moveDis = Util.getDis(current.getEndX(), current.getEndY(),
                         current.getStartX(), current.getStartY());
 
-                // 如果当前点离目标点小于单位时间长度，则认为当前线段已完成
+                // 如果当前点离目标点小于2倍单位时间长度，则认为当前线段已完成
                 if (Math.abs(dis - moveDis) < 2 * div) {
                     current.setEndX(endX);
                     current.setEndY(endY);

@@ -1,13 +1,10 @@
 package com.robog.library.painter;
 
 
-import android.graphics.Canvas;
 import android.support.annotation.NonNull;
 
 import com.robog.library.Action;
 import com.robog.library.Chain;
-import com.robog.library.PixelShape;
-
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -21,7 +18,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 public class TaskPainter extends DelayPainter {
 
-    private static final ThreadFactory mThreadFactory = new ThreadFactory() {
+    private static final ThreadFactory sThreadFactory = new ThreadFactory() {
 
         private final AtomicInteger mCount = new AtomicInteger(1);
 
@@ -33,7 +30,7 @@ public class TaskPainter extends DelayPainter {
 
     private static final ThreadPoolExecutor sExecutor =
             new ThreadPoolExecutor(0, Integer.MAX_VALUE,
-            60L, TimeUnit.SECONDS, new SynchronousQueue<Runnable>(), mThreadFactory);
+            60L, TimeUnit.SECONDS, new SynchronousQueue<Runnable>(), sThreadFactory);
 
     public TaskPainter() {
         super(0);

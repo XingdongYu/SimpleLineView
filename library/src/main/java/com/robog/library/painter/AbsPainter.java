@@ -77,6 +77,10 @@ public abstract class AbsPainter implements Painter {
         this.paint = paint;
     }
 
+    /**
+     * 开始当前绘制前，先完成之前的绘制
+     * @param canvas
+     */
     private void drawPreviouse(Canvas canvas) {
         if (chain != null) {
 
