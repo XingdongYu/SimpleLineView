@@ -16,8 +16,9 @@ import com.robog.library.painter.SegmentPainter;
 public class MainActivity extends AppCompatActivity {
 
 
-    private Painter mHook, mCicle, mCube, mLeftCha, mRightCha,
-            mHookProgress, mCicleProgress, mCubeProgress, mLeftChaProgress, mRightChaProgress;
+    private Painter mHookPainter, mCiclePainter, mCubePainter, mLeftChaPainter, mRightChaPainter,
+            mHookProgressPainter, mCicleProgressPainter, mCubeProgressPainter,
+            mLeftChaProgressPainter, mRightChaProgressPainter;
 
     private SimpleLineView mView1, mView2, mView3, mView4;
 
@@ -28,21 +29,26 @@ public class MainActivity extends AppCompatActivity {
         PixelShape leftChaShape = new PixelShape(10, 10, new int[]{34, 67});
         PixelShape rightChaShape = new PixelShape(10, 10, new int[]{37, 64});
 
-        mHook = new SegmentPainter(hookShape, 1000, false);
-        mHookProgress = new SegProgressPainter(mHook, new float[]{0.6f, 1});
+        // 钩
+        mHookPainter = new SegmentPainter(hookShape, 1000, false);
+        mHookProgressPainter = new SegProgressPainter(mHookPainter, new float[]{0.6f, 1});
 
-        mCube = new SegmentPainter(cubeShape, 1000, true);
-        mCubeProgress = new SegProgressPainter(mCube, new float[]{0.6f, 1});
+        // 矩形
+        mCubePainter = new SegmentPainter(cubeShape, 1000, true);
+        mCubeProgressPainter = new SegProgressPainter(mCubePainter, new float[]{0.6f, 1});
 
-        mCicle = new CirclePainter(circleShape, 1000, -120, 360, false);
-        mCicleProgress = new CircleProgressPainter(mCicle, new float[]{0, 0.4f}, -120,
+        // 圆形
+        mCiclePainter = new CirclePainter(circleShape, 1000, -120, 360, false);
+        mCicleProgressPainter = new CircleProgressPainter(mCiclePainter, new float[]{0, 0.4f}, -120,
                 360, false);
 
-        mLeftCha = new SegmentPainter(leftChaShape, 500, false);
-        mRightCha = new SegmentPainter(rightChaShape, 500, false);
+        // 从左至右一笔
+        mLeftChaPainter = new SegmentPainter(leftChaShape, 500, false);
+        // 从右至左一笔
+        mRightChaPainter = new SegmentPainter(rightChaShape, 500, false);
 
-        mLeftChaProgress = new SegProgressPainter(mLeftCha, new float[]{0f, 0.3f});
-        mRightChaProgress = new SegProgressPainter(mRightCha, new float[]{0.3f, 0.6f});
+        mLeftChaProgressPainter = new SegProgressPainter(mLeftChaPainter, new float[]{0f, 0.3f});
+        mRightChaProgressPainter = new SegProgressPainter(mRightChaPainter, new float[]{0.3f, 0.6f});
 
     }
 
@@ -59,12 +65,12 @@ public class MainActivity extends AppCompatActivity {
         mView3 = findViewById(R.id.view3);
         mView4 = findViewById(R.id.view4);
 
-        mView1.addPainter(mCicle).addPainter(mHook);
-        mView2.addPainter(mCicle).addPainter(mLeftCha).addPainter(mRightCha);
+        mView1.addPainter(mCiclePainter).addPainter(mHookPainter);
+        mView2.addPainter(mCiclePainter).addPainter(mLeftChaPainter).addPainter(mRightChaPainter);
 
-        mView3.addPainter(mCicleProgress).addPainter(mHookProgress).onMain();
-        mView4.addPainter(mLeftChaProgress).addPainter(mRightChaProgress)
-                .addPainter(mCubeProgress).onMain();
+        mView3.addPainter(mCicleProgressPainter).addPainter(mHookProgressPainter).onMain();
+        mView4.addPainter(mLeftChaProgressPainter).addPainter(mRightChaProgressPainter)
+                .addPainter(mCubeProgressPainter).onMain();
 
         mSeekBar = findViewById(R.id.seek_bar);
         mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {

@@ -29,12 +29,18 @@ public class SimpleLineView extends View implements Action {
 
     private int mHeight;
 
+    /**
+     * 保存painter对应当point对象，避免进度条拖动时频繁创建对象
+     */
     private final Map<Painter, List<PixelPoint>> mPointPool = new HashMap<>();
 
     private final List<Painter> mPainters = new ArrayList<>();
 
     private Painter mCurrentPainter;
 
+    /**
+     * TaskPainter能让之后的操作在线程中执行
+     */
     private final Painter mTaskPainter = new TaskPainter();
 
     private final Chain mChain;

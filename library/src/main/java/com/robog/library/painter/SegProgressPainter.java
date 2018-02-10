@@ -14,6 +14,10 @@ import com.robog.library.Util;
 
 public class SegProgressPainter extends SegmentPainter {
 
+    /**
+     * mPercent为执行当前绘制占整体绘制的百分比区间
+     * 例如: 0.5-0.7表示当动画执行到50%时开始执行当前绘制，至70%结束
+     */
     private float[] mPercent;
 
     public SegProgressPainter() {
