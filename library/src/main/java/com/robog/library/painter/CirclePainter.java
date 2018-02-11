@@ -12,26 +12,26 @@ import com.robog.library.PixelShape;
  * @Time: 2018/2/9
  */
 
-public class CirclePainter extends AbsPainter {
+public class CirclePainter extends AbsPainter implements RoundPainter{
 
     private static final String TAG = "CirclePainter";
 
-    final PixelShape mPixelShape;
+    PixelShape mPixelShape;
 
-    final int mDuration;
+    int mDuration;
 
-    final float mStartAngle;
+    float mStartAngle;
 
-    final float mSweepAngle;
+    float mSweepAngle;
 
-    final boolean mUseCenter;
+    boolean mUseCenter;
 
     float mPadding = 10;
 
-    final RectF mRectF = new RectF();
+    RectF mRectF = new RectF();
 
     public CirclePainter() {
-        this(null, 0, 0, 360, false);
+        this(null, 1000, 0, 360, false);
     }
 
     public CirclePainter(Painter painter) {
@@ -69,6 +69,21 @@ public class CirclePainter extends AbsPainter {
     @Override
     public boolean close() {
         return false;
+    }
+
+    @Override
+    public float getStartAngle() {
+        return mStartAngle;
+    }
+
+    @Override
+    public float getSweepAngle() {
+        return mSweepAngle;
+    }
+
+    @Override
+    public boolean useCenter() {
+        return mUseCenter;
     }
 
     @Override

@@ -20,11 +20,23 @@ public class CircleProgressPainter extends CirclePainter {
     private float[] mPercent;
 
     public CircleProgressPainter() {
-        this(new float[]{0, 1.0f}, null, 0, 0, 360, false);
+        this(new float[]{0, 1.0f}, null,
+                0, 0, 360, false);
     }
 
     public CircleProgressPainter(Painter painter) {
-        this(painter, new float[]{0, 1.0f}, 0, 360, false);
+        this(painter, new float[]{0, 1.0f},
+                0, 360, false);
+    }
+
+    public CircleProgressPainter(RoundPainter painter) {
+        this(painter, new float[]{0, 1.0f},
+                painter.getStartAngle(), painter.getSweepAngle(), painter.useCenter());
+    }
+
+    public CircleProgressPainter(RoundPainter painter, float[] percent) {
+        this(painter, percent, painter.getStartAngle(),
+                painter.getSweepAngle(), painter.useCenter());
     }
 
     public CircleProgressPainter(Painter painter, float[] percent,
@@ -43,8 +55,8 @@ public class CircleProgressPainter extends CirclePainter {
         mPercent = percent;
     }
 
-    public Painter setPercent(float[] mPercent) {
-        this.mPercent = mPercent;
+    public Painter setPercent(float[] percent) {
+        this.mPercent = percent;
         return this;
     }
 
@@ -61,7 +73,7 @@ public class CircleProgressPainter extends CirclePainter {
         float offsetPercent = endPercent - startPercent;
 
         if (offsetPercent < 0) {
-            throw new IllegalArgumentException("percent[1] must be greater!");
+            throw new IllegalArgumentException("percent[1] must be greater than percent[0]!");
         }
 
         if (progress < startPercent) {

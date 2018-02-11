@@ -42,8 +42,8 @@ public class SegProgressPainter extends SegmentPainter {
         mPercent = percent;
     }
 
-    public Painter  setPercent(float[] mPercent) {
-        this.mPercent = mPercent;
+    public Painter  setPercent(float[] percent) {
+        this.mPercent = percent;
         return this;
     }
 

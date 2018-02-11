@@ -17,14 +17,14 @@ public class SegmentPainter extends AbsPainter {
 
     private static final String TAG = "SegmentPainter";
 
-    private final PixelShape mPixelShape;
+    private PixelShape mPixelShape;
 
-    private final int mDuration;
+    private int mDuration;
 
-    private final boolean mClose;
+    private boolean mClose;
 
     public SegmentPainter() {
-        this(null, 0, false);
+        this(null, 1000, false);
     }
 
     public SegmentPainter(Painter painter) {

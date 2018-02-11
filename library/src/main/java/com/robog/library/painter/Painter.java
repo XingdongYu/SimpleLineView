@@ -15,9 +15,6 @@ public interface Painter {
 
     PixelShape getShape();
 
-    /**
-     * 完成当前笔画所需时间
-     */
     int duration();
 
     /**
@@ -25,19 +22,10 @@ public interface Painter {
      */
     boolean close();
 
-    /**
-     * 插入一笔
-     */
     void start(Chain chain, Action action);
 
-    /**
-     * 继续
-     */
     void stick();
 
-    /**
-     * 停止
-     */
     void stop();
 
     /**

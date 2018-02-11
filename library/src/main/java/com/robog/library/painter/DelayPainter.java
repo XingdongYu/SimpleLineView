@@ -39,7 +39,7 @@ public class DelayPainter implements Painter {
     public void start(Chain chain, Action action) {
         try {
             if (Looper.myLooper() == Looper.getMainLooper())
-                throw new RuntimeException("can't delay in main thread!");
+                throw new RuntimeException("Can't delay in the main thread!");
             Thread.sleep(mTime);
             chain.proceed();
         } catch (InterruptedException e) {
