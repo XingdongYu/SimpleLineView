@@ -12,4 +12,6 @@ public interface RoundPainter extends Painter {
     float getSweepAngle();
 
     boolean useCenter();
+
+    void setPadding(float padding);
 }

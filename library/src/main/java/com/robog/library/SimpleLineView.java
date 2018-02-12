@@ -4,10 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
-
-import com.robog.library.painter.AbsPainter;
 import com.robog.library.painter.Painter;
 import com.robog.library.painter.TaskPainter;
 
@@ -47,6 +44,9 @@ public class SimpleLineView extends View implements Action {
 
     private int mProgress;
 
+    /**
+     * 是否继续绘制
+     */
     private boolean mStick;
 
     public SimpleLineView(Context context) {
@@ -173,7 +173,7 @@ public class SimpleLineView extends View implements Action {
         for (int target : path) {
 
             if (target > horizontal * vertical) {
-                throw new IllegalArgumentException("current coordinate [" + target + "] is not in the cell!");
+                throw new IllegalArgumentException("Current coordinate [" + target + "] is invalid!");
             }
 
             int quotient = target / horizontal;
@@ -184,9 +184,11 @@ public class SimpleLineView extends View implements Action {
             float coefficientX;
             float coefficientY;
             if (remainder != 0) {
+                // 针对余数不为0时
                 coefficientX = remainder - 0.5f;
                 coefficientY = quotient + 0.5f;
             } else {
+                // 余数为0时
                 coefficientX = horizontal - 0.5f;
                 coefficientY = quotient - 0.5f;
             }

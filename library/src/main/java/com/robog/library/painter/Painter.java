@@ -1,6 +1,7 @@
 package com.robog.library.painter;
 
 import android.graphics.Canvas;
+import android.graphics.Paint;
 
 import com.robog.library.Action;
 import com.robog.library.Chain;
@@ -21,6 +22,10 @@ public interface Painter {
      * 路径是否闭合
      */
     boolean close();
+
+    void setPaint(Paint paint);
+
+    Paint getPaint();
 
     void start(Chain chain, Action action);
 

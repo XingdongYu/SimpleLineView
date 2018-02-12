@@ -16,8 +16,8 @@ import com.robog.library.painter.SegmentPainter;
 
 public class MainActivity extends AppCompatActivity {
 
-
-    private Painter mHookPainter, mCubePainter, mLeftChaPainter, mRightChaPainter,
+    private Painter mHookPainter, mCubePainter,
+            mLeftChaPainter, mRightChaPainter,
             mCloseStarPainter, mOpenStarPainter,
             mHookProgressPainter, mCubeProgressPainter,
             mLeftChaProgressPainter, mRightChaProgressPainter;
@@ -61,15 +61,13 @@ public class MainActivity extends AppCompatActivity {
         mLeftChaPainter = new SegmentPainter(leftChaShape, 500, false);
         // 从右至左一笔
         mRightChaPainter = new SegmentPainter(rightChaShape, 500, false);
-
         mLeftChaProgressPainter = new SegProgressPainter(mLeftChaPainter, new float[]{0f, 0.3f});
         mRightChaProgressPainter = new SegProgressPainter(mRightChaPainter, new float[]{0.3f, 0.6f});
 
+        // 五角星
         mCloseStarPainter = new SegmentPainter(closeStarShape, 2000, true);
         mOpenStarPainter = new SegmentPainter(openStarShape, 2000, true);
     }
-
-    private SeekBar mSeekBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -93,8 +91,7 @@ public class MainActivity extends AppCompatActivity {
         mView6.addPainter(mLeftChaProgressPainter).addPainter(mRightChaProgressPainter)
                 .addPainter(mCubeProgressPainter).onMain();
 
-        mSeekBar = findViewById(R.id.seek_bar);
-        mSeekBar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        ((SeekBar) findViewById(R.id.seek_bar)).setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 mView5.setProgress(progress);

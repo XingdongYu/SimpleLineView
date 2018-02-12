@@ -1,8 +1,6 @@
 package com.robog.library.painter;
 
 import android.graphics.Canvas;
-import android.util.Log;
-
 import com.robog.library.Action;
 import com.robog.library.PixelPoint;
 import com.robog.library.PixelShape;

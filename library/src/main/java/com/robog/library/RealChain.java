@@ -1,8 +1,6 @@
 package com.robog.library;
 
-import android.util.Log;
 import android.util.SparseArray;
-
 import com.robog.library.painter.Painter;
 
 import java.util.List;

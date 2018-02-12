@@ -3,8 +3,6 @@ package com.robog.library.painter;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
-import android.util.Log;
-
 import com.robog.library.Action;
 import com.robog.library.Chain;
 import com.robog.library.PixelPoint;
@@ -20,12 +18,18 @@ public abstract class AbsPainter implements Painter {
 
     private static final String TAG = "AbsPainter";
 
+    /**
+     * 动画每一帧时长
+     */
     protected static final int INTERVAL = 10;
 
     protected Chain chain;
 
     protected List<PixelPoint> pointList;
 
+    /**
+     * 动画是否停止
+     */
     protected boolean isStop;
 
     protected Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -36,6 +40,16 @@ public abstract class AbsPainter implements Painter {
         paint.setStrokeWidth(10);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.MITER);
+    }
+
+    @Override
+    public void setPaint(Paint paint) {
+        this.paint = paint;
+    }
+
+    @Override
+    public Paint getPaint() {
+        return paint;
     }
 
     @Override
@@ -62,7 +76,10 @@ public abstract class AbsPainter implements Painter {
 
     @Override
     public void onDraw(Canvas canvas) {
+
+        // 1.完成之前Painter的绘制
         drawPreviouse(canvas);
+        // 2.绘制当前
         realDraw(canvas);
     }
 
@@ -71,10 +88,6 @@ public abstract class AbsPainter implements Painter {
 
     public void performDraw(Action action) {
 
-    }
-
-    public void setPaint(Paint paint) {
-        this.paint = paint;
     }
 
     /**

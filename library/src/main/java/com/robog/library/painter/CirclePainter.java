@@ -16,19 +16,19 @@ public class CirclePainter extends AbsPainter implements RoundPainter{
 
     private static final String TAG = "CirclePainter";
 
-    PixelShape mPixelShape;
+    private PixelShape mPixelShape;
 
-    int mDuration;
+    private int mDuration;
 
-    float mStartAngle;
+    private float mStartAngle;
 
-    float mSweepAngle;
+    private float mSweepAngle;
 
-    boolean mUseCenter;
+    private boolean mUseCenter;
 
-    float mPadding = 10;
+    private float mPadding = 10;
 
-    RectF mRectF = new RectF();
+    private RectF mRectF = new RectF();
 
     public CirclePainter() {
         this(null, 1000, 0, 360, false);
@@ -50,11 +50,6 @@ public class CirclePainter extends AbsPainter implements RoundPainter{
         mSweepAngle = sweepAngle;
         mUseCenter = useCenter;
     }
-
-    public void setPadding(float padding) {
-        mPadding = padding;
-    }
-
 
     @Override
     public PixelShape getShape() {
@@ -84,6 +79,11 @@ public class CirclePainter extends AbsPainter implements RoundPainter{
     @Override
     public boolean useCenter() {
         return mUseCenter;
+    }
+
+    @Override
+    public void setPadding(float padding) {
+        mPadding = padding;
     }
 
     @Override
@@ -129,6 +129,7 @@ public class CirclePainter extends AbsPainter implements RoundPainter{
     }
 
     void setRectF() {
+
         // 以第一点为矩形左上角、最后一点为右下角
         mRectF.set(pointList.get(0).getStartX() + mPadding,
                 pointList.get(0).getStartY() + mPadding,

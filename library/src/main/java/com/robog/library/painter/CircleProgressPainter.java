@@ -1,7 +1,5 @@
 package com.robog.library.painter;
 
-import android.util.Log;
-
 import com.robog.library.Action;
 import com.robog.library.PixelPoint;
 import com.robog.library.PixelShape;
@@ -50,7 +48,7 @@ public class CircleProgressPainter extends CirclePainter {
         super(pixelShape, duration, startAngle, sweepAngle, useCenter);
 
         if (percent == null || percent.length != 2) {
-            throw new IllegalArgumentException("the length of percent must be 2!");
+            throw new IllegalArgumentException("The length of percent must be 2!");
         }
         mPercent = percent;
     }
@@ -84,7 +82,7 @@ public class CircleProgressPainter extends CirclePainter {
         }
 
         float realProgress = (progress - startPercent) / offsetPercent;
-        float angle = mSweepAngle * realProgress;
+        float angle = getSweepAngle() * realProgress;
 
         point.setAngle(angle);
         action.update(this);

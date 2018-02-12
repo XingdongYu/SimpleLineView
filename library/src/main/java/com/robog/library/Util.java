@@ -52,8 +52,7 @@ public class Util {
         float nextX = next.getStartX();
         float nextY = next.getStartY();
 
-        float dis = getDis(currentX, currentY, nextX, nextY);
-        return dis;
+        return getDis(currentX, currentY, nextX, nextY);
     }
 
     public static float getDis(float x1, float y1, float x2, float y2) {

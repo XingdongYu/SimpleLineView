@@ -1,6 +1,7 @@
 package com.robog.library.painter;
 
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.os.Looper;
 
 import com.robog.library.Action;
@@ -33,6 +34,16 @@ public class DelayPainter implements Painter {
     @Override
     public boolean close() {
         return false;
+    }
+
+    @Override
+    public void setPaint(Paint paint) {
+
+    }
+
+    @Override
+    public Paint getPaint() {
+        return null;
     }
 
     @Override
