@@ -27,12 +27,12 @@ public class CircleProgressPainter extends CirclePainter {
                 0, 360, false);
     }
 
-    public CircleProgressPainter(RoundPainter painter) {
+    public CircleProgressPainter(OPainter painter) {
         this(painter, new float[]{0, 1.0f},
                 painter.getStartAngle(), painter.getSweepAngle(), painter.useCenter());
     }
 
-    public CircleProgressPainter(RoundPainter painter, float[] percent) {
+    public CircleProgressPainter(OPainter painter, float[] percent) {
         this(painter, percent, painter.getStartAngle(),
                 painter.getSweepAngle(), painter.useCenter());
     }

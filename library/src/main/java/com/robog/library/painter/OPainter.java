@@ -5,7 +5,7 @@ package com.robog.library.painter;
  * @Time: 2018/2/11
  */
 
-public interface RoundPainter extends Painter {
+public interface OPainter extends Painter {
 
     float getStartAngle();
 

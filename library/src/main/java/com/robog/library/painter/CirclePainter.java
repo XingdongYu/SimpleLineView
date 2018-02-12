@@ -12,7 +12,7 @@ import com.robog.library.PixelShape;
  * @Time: 2018/2/9
  */
 
-public class CirclePainter extends AbsPainter implements RoundPainter{
+public class CirclePainter extends AbsPainter implements OPainter {
 
     private static final String TAG = "CirclePainter";
 

@@ -10,7 +10,7 @@ import com.robog.library.SimpleLineView;
 import com.robog.library.painter.CirclePainter;
 import com.robog.library.painter.CircleProgressPainter;
 import com.robog.library.painter.Painter;
-import com.robog.library.painter.RoundPainter;
+import com.robog.library.painter.OPainter;
 import com.robog.library.painter.SegProgressPainter;
 import com.robog.library.painter.SegmentPainter;
 
@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity {
             mHookProgressPainter, mCubeProgressPainter,
             mLeftChaProgressPainter, mRightChaProgressPainter;
 
-    private RoundPainter mCiclePainter, mCicleProgressPainter;
+    private OPainter mCiclePainter, mCicleProgressPainter;
 
     /**
      * 这里的路径点通过获取PS中五角星图片的像素点的x和y值计算得到
