@@ -1,11 +1,11 @@
 ## SimpleLineView
 
 这里简单借鉴了OkHttp的责任链模式，整体架构图如下：
-![image](https://github.com/XingdongYu/SimpleLineView/blob/master/pic/diagram.png)
+![image](https://github.com/XingdongYu/SimpleLineView/blob/master/art/diagram.png)
 
 效果图
 ---
-![image](https://github.com/XingdongYu/SimpleLineView/blob/master/pic/sample.gif)
+![image](https://github.com/XingdongYu/SimpleLineView/blob/master/art/sample.gif)
 
 添加路径
 ---
