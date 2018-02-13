@@ -86,6 +86,7 @@ public class SimpleLineView extends View implements Action {
         for (Painter painter : mPainters) {
             painter.stop();
         }
+        mStick = false;
     }
 
     public SimpleLineView addPainter(Painter painter) {
@@ -148,7 +149,7 @@ public class SimpleLineView extends View implements Action {
 
             // 如果不是继续绘制，则重置point
             if (!mStick) {
-                Util.resetPoint(pixelPoints);
+                PixelUtil.resetPoint(pixelPoints);
             }
 
             return pixelPoints;

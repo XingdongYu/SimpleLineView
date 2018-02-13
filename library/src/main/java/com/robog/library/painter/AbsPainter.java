@@ -37,7 +37,7 @@ public abstract class AbsPainter implements Painter {
     public AbsPainter() {
         paint.setColor(Color.WHITE);
         paint.setStyle(Paint.Style.STROKE);
-        paint.setStrokeWidth(10);
+        paint.setStrokeWidth(8);
         paint.setStrokeCap(Paint.Cap.ROUND);
         paint.setStrokeJoin(Paint.Join.MITER);
     }

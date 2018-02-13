@@ -9,7 +9,7 @@ import com.robog.library.PixelShape;
  * @Time: 2018/2/10
  */
 
-public class CircleProgressPainter extends CirclePainter {
+public class CircleProgressPainter extends RealCirclePainter {
 
     /**
      * mPercent为执行当前绘制占整体绘制的百分比区间
@@ -27,14 +27,14 @@ public class CircleProgressPainter extends CirclePainter {
                 0, 360, false);
     }
 
-    public CircleProgressPainter(OPainter painter) {
+    public CircleProgressPainter(CirclePainter painter) {
         this(painter, new float[]{0, 1.0f},
-                painter.getStartAngle(), painter.getSweepAngle(), painter.useCenter());
+                painter.startAngle(), painter.sweepAngle(), painter.useCenter());
     }
 
-    public CircleProgressPainter(OPainter painter, float[] percent) {
-        this(painter, percent, painter.getStartAngle(),
-                painter.getSweepAngle(), painter.useCenter());
+    public CircleProgressPainter(CirclePainter painter, float[] percent) {
+        this(painter, percent, painter.startAngle(),
+                painter.sweepAngle(), painter.useCenter());
     }
 
     public CircleProgressPainter(Painter painter, float[] percent,
@@ -82,7 +82,7 @@ public class CircleProgressPainter extends CirclePainter {
         }
 
         float realProgress = (progress - startPercent) / offsetPercent;
-        float angle = getSweepAngle() * realProgress;
+        float angle = sweepAngle() * realProgress;
 
         point.setAngle(angle);
         action.update(this);

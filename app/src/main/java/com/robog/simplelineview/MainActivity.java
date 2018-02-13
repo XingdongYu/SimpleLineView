@@ -7,22 +7,23 @@ import android.widget.SeekBar;
 
 import com.robog.library.PixelShape;
 import com.robog.library.SimpleLineView;
-import com.robog.library.painter.CirclePainter;
+import com.robog.library.painter.RealCirclePainter;
 import com.robog.library.painter.CircleProgressPainter;
 import com.robog.library.painter.Painter;
-import com.robog.library.painter.OPainter;
+import com.robog.library.painter.CirclePainter;
 import com.robog.library.painter.SegProgressPainter;
 import com.robog.library.painter.SegmentPainter;
 
 public class MainActivity extends AppCompatActivity {
 
     private Painter mHookPainter, mCubePainter,
+            mTrianglePainter, mReverseTrianglePainter,
             mLeftChaPainter, mRightChaPainter,
             mCloseStarPainter, mOpenStarPainter,
             mHookProgressPainter, mCubeProgressPainter,
             mLeftChaProgressPainter, mRightChaProgressPainter;
 
-    private OPainter mCiclePainter, mCicleProgressPainter;
+    private CirclePainter mCiclePainter, mDoublemCiclePainter, mCicleProgressPainter;
 
     /**
      * 这里的路径点通过获取PS中五角星图片的像素点的x和y值计算得到
@@ -36,12 +37,25 @@ public class MainActivity extends AppCompatActivity {
     private SimpleLineView mView1, mView2, mView3, mView4, mView5, mView6;
 
     {
+        // 钩子形状
         PixelShape hookShape = new PixelShape(10, 10, new int[]{43, 65, 38});
+        // 三角形
+        PixelShape triangleShape = new PixelShape(400, 400, new int[]{15800, 112063, 112337});
+        // 倒三角
+        PixelShape reverseTriangleShape = new PixelShape(400, 400, new int[]{47263, 143400, 47537});
+        // 圆形
         PixelShape circleShape = new PixelShape(10, 10, new int[]{1, 100});
+        // 同时画两个圆，这里设置了两组像素点作为两个圆的Rect
+        PixelShape doubleCircleShape = new PixelShape(400, 400, new int[]{1605, 12833, 146366, 158795});
+        // 矩形
         PixelShape cubeShape = new PixelShape(2, 2, new int[]{1, 2, 4, 3});
+        // 左上 -> 右下
         PixelShape leftChaShape = new PixelShape(10, 10, new int[]{34, 67});
+        // 右上 -> 左下
         PixelShape rightChaShape = new PixelShape(10, 10, new int[]{37, 64});
+        // 连线五角星
         PixelShape closeStarShape = new PixelShape(200, 200, CLOSE_FIVE_STAR);
+        // 空心五角星
         PixelShape openStarShape = new PixelShape(200, 200, OPEN_FIVE_STAR);
 
         // 钩
@@ -53,13 +67,22 @@ public class MainActivity extends AppCompatActivity {
         mCubeProgressPainter = new SegProgressPainter(mCubePainter, new float[]{0.6f, 1});
 
         // 圆形
-        mCiclePainter = new CirclePainter(circleShape, 1000,
+        mCiclePainter = new RealCirclePainter(circleShape, 1000,
                 -120, 360, false);
+        mDoublemCiclePainter = new DoubleCirclePainter(doubleCircleShape,
+                1000, 90, 360, false);
+        // 由于原图片外层原与图片边框相切, 默认画笔设置了宽度，因此这里需要设padding，
+        // 否则圆线条与view相切部分不完整。
+        mDoublemCiclePainter.setPadding(6);
         mCicleProgressPainter = new CircleProgressPainter(mCiclePainter, new float[]{0, 0.4f});
 
-        // 从左至右一笔
+        // 三角形
+        mTrianglePainter = new SegmentPainter(triangleShape, 500, true);
+        // 倒三角
+        mReverseTrianglePainter = new SegmentPainter(reverseTriangleShape, 500, true);
+
+        // 这里的叉分了两笔画
         mLeftChaPainter = new SegmentPainter(leftChaShape, 500, false);
-        // 从右至左一笔
         mRightChaPainter = new SegmentPainter(rightChaShape, 500, false);
         mLeftChaProgressPainter = new SegProgressPainter(mLeftChaPainter, new float[]{0f, 0.3f});
         mRightChaProgressPainter = new SegProgressPainter(mRightChaPainter, new float[]{0.3f, 0.6f});
@@ -82,7 +105,7 @@ public class MainActivity extends AppCompatActivity {
         mView5 = findViewById(R.id.view5);
         mView6 = findViewById(R.id.view6);
 
-        mView1.addPainter(mCiclePainter).addPainter(mHookPainter);
+        mView1.addPainter(mDoublemCiclePainter).addPainter(mTrianglePainter).addPainter(mReverseTrianglePainter);
         mView2.addPainter(mCiclePainter).addPainter(mLeftChaPainter).addPainter(mRightChaPainter);
         mView3.addPainter(mCloseStarPainter);
         mView4.addPainter(mOpenStarPainter);

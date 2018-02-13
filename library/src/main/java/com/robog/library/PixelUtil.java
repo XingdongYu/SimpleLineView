@@ -7,7 +7,7 @@ import java.util.List;
  * @Time: 2018/2/9
  */
 
-public class Util {
+public class PixelUtil {
 
     public static void resetPoint(List<PixelPoint> pixelPoints) {
         for (PixelPoint point : pixelPoints) {
