@@ -107,7 +107,7 @@ public class RealCirclePainter extends AbsPainter implements CirclePainter {
     }
 
     @Override
-    public void performDraw(Action action) {
+    public boolean performDraw(Action action) {
 
         setRectF();
 
@@ -121,20 +121,33 @@ public class RealCirclePainter extends AbsPainter implements CirclePainter {
             if (angle > mSweepAngle) {
                 angle = mSweepAngle;
             }
-            while (angle <= mSweepAngle && !isStop) {
+            while (angle <= mSweepAngle) {
+
+                if (!isRunning())
+                    return false;
+
                 angle += div;
-                update(action, point, angle);
+                if (!update(action, point, angle)) {
+                    return false;
+                }
             }
 
         } else {
             if (angle < mSweepAngle) {
                 angle = mSweepAngle;
             }
-            while (angle >= mSweepAngle && !isStop) {
+            while (angle >= mSweepAngle) {
+
+                if (!isRunning())
+                    return false;
+
                 angle -= div;
-                update(action, point, angle);
+                if (!update(action, point, angle)) {
+                    return false;
+                }
             }
         }
+        return true;
 
     }
 
@@ -147,14 +160,16 @@ public class RealCirclePainter extends AbsPainter implements CirclePainter {
                 pointList.get(pointList.size() - 1).getStartY() - getPadding());
     }
 
-    private void update(Action action, PixelPoint point, float angle) {
+    private boolean update(Action action, PixelPoint point, float angle) {
         point.setAngle(angle);
         action.update(this);
         try {
             Thread.sleep(INTERVAL);
         } catch (InterruptedException e) {
             e.printStackTrace();
+            return false;
         }
+        return true;
     }
 
 }

@@ -27,9 +27,9 @@ public interface Painter {
 
     Paint getPaint();
 
-    void start(Chain chain, Action action);
+    boolean isRunning();
 
-    void stick();
+    void start(Chain chain, Action action);
 
     void stop();
 

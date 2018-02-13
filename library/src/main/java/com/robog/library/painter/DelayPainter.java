@@ -47,6 +47,11 @@ public class DelayPainter implements Painter {
     }
 
     @Override
+    public boolean isRunning() {
+        return false;
+    }
+
+    @Override
     public void start(Chain chain, Action action) {
         try {
             if (Looper.myLooper() == Looper.getMainLooper())
@@ -56,11 +61,6 @@ public class DelayPainter implements Painter {
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
-    }
-
-    @Override
-    public void stick() {
-
     }
 
     @Override

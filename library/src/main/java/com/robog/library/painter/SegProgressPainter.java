@@ -1,5 +1,7 @@
 package com.robog.library.painter;
 
+import android.util.Log;
+
 import com.robog.library.Action;
 import com.robog.library.PixelPoint;
 import com.robog.library.PixelShape;
@@ -46,7 +48,7 @@ public class SegProgressPainter extends SegmentPainter {
     }
 
     @Override
-    public void performDraw(Action action) {
+    public boolean performDraw(Action action) {
 
         float progress = (float) action.getProgress() / 100;
         float startPercent = mPercent[0];
@@ -60,7 +62,7 @@ public class SegProgressPainter extends SegmentPainter {
         }
 
         if (progress < startPercent) {
-            return;
+            return true;
         }
         if (progress > endPercent) {
             progress = endPercent;
@@ -87,11 +89,6 @@ public class SegProgressPainter extends SegmentPainter {
 
             if (realProgress >= allFraction) {
                 current.setPathFinish(true);
-
-                // 更新最后一次，保证图像都绘制
-                if (i == pointList.size() - 1) {
-                    action.update(this);
-                }
             } else {
                 float startX = current.getStartX();
                 float startY = current.getStartY();
@@ -116,6 +113,9 @@ public class SegProgressPainter extends SegmentPainter {
             }
 
         }
+        // 更新最后一次，保证图像都绘制
+        action.update(this);
+        return true;
     }
 
 }

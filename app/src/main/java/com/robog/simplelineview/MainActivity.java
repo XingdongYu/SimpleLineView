@@ -32,7 +32,8 @@ public class MainActivity extends AppCompatActivity {
      * 这里的点大约取了一下，并非绝对精确的值
      */
     private static final int[] CLOSE_FIVE_STAR = {3100, 36046, 15987, 15813, 36154};
-    private static final int[] OPEN_FIVE_STAR = {3100, 15878, 15813, 23667, 36046, 28100, 36154, 23731, 15987, 15920};
+    private static final int[] OPEN_FIVE_STAR =
+            {3100, 15878, 15813, 23667, 36046, 28100, 36154, 23731, 15987, 15920};
 
     private SimpleLineView mView1, mView2, mView3, mView4, mView5, mView6;
 
@@ -40,13 +41,18 @@ public class MainActivity extends AppCompatActivity {
         // 钩子形状
         PixelShape hookShape = new PixelShape(10, 10, new int[]{43, 65, 38});
         // 三角形
-        PixelShape triangleShape = new PixelShape(400, 400, new int[]{15800, 112063, 112337});
+        PixelShape triangleShape =
+                new PixelShape(400, 400, new int[]{15800, 112063, 112337});
         // 倒三角
-        PixelShape reverseTriangleShape = new PixelShape(400, 400, new int[]{47263, 143400, 47537});
+        PixelShape reverseTriangleShape =
+                new PixelShape(400, 400, new int[]{47263, 143400, 47537});
         // 圆形
-        PixelShape circleShape = new PixelShape(10, 10, new int[]{1, 100});
-        // 同时画两个圆，这里设置了两组像素点作为两个圆的Rect
-        PixelShape doubleCircleShape = new PixelShape(400, 400, new int[]{1605, 12833, 146366, 158795});
+        PixelShape circleShape =
+                new PixelShape(10, 10, new int[]{1, 100});
+        // 同时画两个圆
+        // 这里设置了两组像素点作为两个圆的Rect
+        PixelShape doubleCircleShape =
+                new PixelShape(400, 400, new int[]{1605, 12833, 146366, 158795});
         // 矩形
         PixelShape cubeShape = new PixelShape(2, 2, new int[]{1, 2, 4, 3});
         // 左上 -> 右下
@@ -77,13 +83,13 @@ public class MainActivity extends AppCompatActivity {
         mCicleProgressPainter = new CircleProgressPainter(mCiclePainter, new float[]{0, 0.4f});
 
         // 三角形
-        mTrianglePainter = new SegmentPainter(triangleShape, 500, true);
+        mTrianglePainter = new SegmentPainter(triangleShape, 800, true);
         // 倒三角
-        mReverseTrianglePainter = new SegmentPainter(reverseTriangleShape, 500, true);
+        mReverseTrianglePainter = new SegmentPainter(reverseTriangleShape, 800, true);
 
         // 这里的叉分了两笔画
-        mLeftChaPainter = new SegmentPainter(leftChaShape, 500, false);
-        mRightChaPainter = new SegmentPainter(rightChaShape, 500, false);
+        mLeftChaPainter = new SegmentPainter(leftChaShape, 300, false);
+        mRightChaPainter = new SegmentPainter(rightChaShape, 300, false);
         mLeftChaProgressPainter = new SegProgressPainter(mLeftChaPainter, new float[]{0f, 0.3f});
         mRightChaProgressPainter = new SegProgressPainter(mRightChaPainter, new float[]{0.3f, 0.6f});
 
@@ -105,8 +111,12 @@ public class MainActivity extends AppCompatActivity {
         mView5 = findViewById(R.id.view5);
         mView6 = findViewById(R.id.view6);
 
-        mView1.addPainter(mDoublemCiclePainter).addPainter(mTrianglePainter).addPainter(mReverseTrianglePainter);
-        mView2.addPainter(mCiclePainter).addPainter(mLeftChaPainter).addPainter(mRightChaPainter);
+        mView1.addPainter(mDoublemCiclePainter)
+                .addPainter(mTrianglePainter)
+                .addPainter(mReverseTrianglePainter);
+        mView2.addPainter(mCiclePainter)
+                .addPainter(mLeftChaPainter)
+                .addPainter(mRightChaPainter);
         mView3.addPainter(mCloseStarPainter);
         mView4.addPainter(mOpenStarPainter);
 
@@ -114,7 +124,8 @@ public class MainActivity extends AppCompatActivity {
         mView6.addPainter(mLeftChaProgressPainter).addPainter(mRightChaProgressPainter)
                 .addPainter(mCubeProgressPainter).onMain();
 
-        ((SeekBar) findViewById(R.id.seek_bar)).setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
+        ((SeekBar) findViewById(R.id.seek_bar))
+                .setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
             @Override
             public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
                 mView5.setProgress(progress);

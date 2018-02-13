@@ -1,6 +1,8 @@
 package com.robog.library.painter;
 
 import android.graphics.Canvas;
+import android.util.Log;
+
 import com.robog.library.Action;
 import com.robog.library.PixelPoint;
 import com.robog.library.PixelShape;
@@ -86,7 +88,7 @@ public class SegmentPainter extends AbsPainter {
     }
 
     @Override
-    public void performDraw(Action action) {
+    public boolean performDraw(Action action) {
 
         // 总路程
         float distance = PixelUtil.calDistance(pointList, close());
@@ -119,7 +121,10 @@ public class SegmentPainter extends AbsPainter {
             float div = dis / segment;
             float degree = (float) Math.atan2(deltaY, deltaX);
 
-            while (!current.isPathFinish() && !isStop) {
+            while (!current.isPathFinish()) {
+
+                if (!isRunning())
+                    return false;
 
                 float moveX = (float) (current.getEndX() + div * Math.cos(degree));
                 float moveY = (float) (current.getEndY() + div * Math.sin(degree));
@@ -142,9 +147,13 @@ public class SegmentPainter extends AbsPainter {
                     Thread.sleep(INTERVAL);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
+                    return false;
                 }
             }
+            // 更新最后一次，保证图像都绘制
+            action.update(this);
 
         }
+        return true;
     }
 }

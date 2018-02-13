@@ -3,6 +3,8 @@ package com.robog.library.painter;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
+import android.util.Log;
+
 import com.robog.library.Action;
 import com.robog.library.Chain;
 import com.robog.library.PixelPoint;
@@ -28,9 +30,9 @@ public abstract class AbsPainter implements Painter {
     protected List<PixelPoint> pointList;
 
     /**
-     * 动画是否停止
+     * 绘制是否正在执行
      */
-    protected boolean isStop;
+    private boolean mIsRunning = false;
 
     protected Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
@@ -53,25 +55,31 @@ public abstract class AbsPainter implements Painter {
     }
 
     @Override
+    public boolean isRunning() {
+        return mIsRunning;
+    }
+
+    @Override
     public void start(Chain chain, Action action) {
+
+        mIsRunning = true;
 
         this.chain = chain;
 
         pointList = action.fetchCoordinate(this);
 
-        performDraw(action);
+        boolean isFinish = performDraw(action);
 
-        chain.proceed();
+        mIsRunning = false;
+
+        if (isFinish) {
+            chain.proceed();
+        }
     }
 
     @Override
     public void stop() {
-        isStop = true;
-    }
-
-    @Override
-    public void stick() {
-        isStop = false;
+        mIsRunning = false;
     }
 
     @Override
@@ -86,8 +94,8 @@ public abstract class AbsPainter implements Painter {
     protected abstract void realDraw(Canvas canvas);
 
 
-    public void performDraw(Action action) {
-
+    public boolean performDraw(Action action) {
+        return false;
     }
 
     /**
@@ -97,8 +105,7 @@ public abstract class AbsPainter implements Painter {
     private void drawPreviouse(Canvas canvas) {
         if (chain != null) {
 
-            int index = chain.index();
-
+            final int index = chain.index();
             final List<Painter> painters = chain.painters();
 
             for (int i = 0; i < index - 1; i ++) {

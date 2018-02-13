@@ -4,12 +4,14 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 import com.robog.library.painter.Painter;
 import com.robog.library.painter.TaskPainter;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -46,6 +48,8 @@ public class SimpleLineView extends View implements Action {
 
     /**
      * 是否继续绘制
+     * <p/>
+     * 如果是继续绘制，不会在{@link Action#fetchCoordinate(Painter)}中不会重置PixelPoint
      */
     private boolean mStick;
 
@@ -60,6 +64,7 @@ public class SimpleLineView extends View implements Action {
     public SimpleLineView(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
 
+        // 默认在线程中
         mPainters.add(mTaskPainter);
         mChain = new RealChain(mPainters, 0, this);
 
@@ -70,24 +75,40 @@ public class SimpleLineView extends View implements Action {
     }
 
     public void start() {
+
         mStick = false;
-        mChain.proceed();
+        mPointPool.clear();
+
+        if (!isRunning()) {
+            mChain.proceed();
+        }
     }
 
     public void stick() {
-        for (Painter painter : mPainters) {
-            painter.stick();
-        }
+
         mStick = true;
-        mChain.proceed();
+        if (!isRunning()) {
+            mChain.proceed();
+        }
     }
 
     public void stop() {
-        for (Painter painter : mPainters) {
-            painter.stop();
+
+        if (mCurrentPainter != null) {
+            mCurrentPainter.stop();
         }
         mStick = false;
     }
+
+    public boolean isRunning() {
+        boolean isRunning = false;
+
+        for (Painter painter : mPainters) {
+            isRunning |= painter.isRunning();
+        }
+        return isRunning;
+    }
+
 
     public SimpleLineView addPainter(Painter painter) {
         mPainters.add(painter);
@@ -146,7 +167,6 @@ public class SimpleLineView extends View implements Action {
         List<PixelPoint> pixelPoints = mPointPool.get(painter);
 
         if (pixelPoints != null) {
-
             // 如果不是继续绘制，则重置point
             if (!mStick) {
                 PixelUtil.resetPoint(pixelPoints);

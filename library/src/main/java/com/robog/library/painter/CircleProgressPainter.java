@@ -59,7 +59,7 @@ public class CircleProgressPainter extends RealCirclePainter {
     }
 
     @Override
-    public void performDraw(Action action) {
+    public boolean performDraw(Action action) {
 
         setRectF();
 
@@ -75,7 +75,7 @@ public class CircleProgressPainter extends RealCirclePainter {
         }
 
         if (progress < startPercent) {
-            return;
+            return true;
         }
         if (progress > endPercent) {
             progress = endPercent;
@@ -86,5 +86,6 @@ public class CircleProgressPainter extends RealCirclePainter {
 
         point.setAngle(angle);
         action.update(this);
+        return true;
     }
 }
