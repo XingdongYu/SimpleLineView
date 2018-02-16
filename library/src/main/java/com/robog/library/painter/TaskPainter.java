@@ -5,11 +5,20 @@ import android.support.annotation.NonNull;
 
 import com.robog.library.Action;
 import com.robog.library.Chain;
+import com.robog.library.PixelPoint;
+import com.robog.library.SimpleLineView;
+import com.robog.library.Utils;
+
+import java.util.Iterator;
+import java.util.List;
+import java.util.Map;
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
+
+import static com.robog.library.SimpleLineView.STATUS_START;
 
 /**
  * @Author: yuxingdong
@@ -32,15 +41,22 @@ public class TaskPainter extends DelayPainter {
             new ThreadPoolExecutor(0, Integer.MAX_VALUE,
             60L, TimeUnit.SECONDS, new SynchronousQueue<Runnable>(), sThreadFactory);
 
-    public TaskPainter() {
+    private final Map<Painter, List<PixelPoint>> mPainterPool;
+
+    public TaskPainter(Map<Painter, List<PixelPoint>> painters) {
         super(0);
+        mPainterPool = painters;
     }
 
     @Override
-    public void start(final Chain chain, Action action) {
+    public void start(final Chain chain, final Action action) {
         sExecutor.execute(new Runnable() {
             @Override
             public void run() {
+                // 当status为start时，重置
+                if (action.getStatus() == STATUS_START) {
+                    Utils.resetPointStatus(mPainterPool);
+                }
                 chain.proceed();
             }
         });

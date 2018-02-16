@@ -1,12 +1,11 @@
 package com.robog.library.painter;
 
 import android.graphics.Canvas;
-import android.util.Log;
 
 import com.robog.library.Action;
 import com.robog.library.PixelPoint;
 import com.robog.library.PixelShape;
-import com.robog.library.PixelUtil;
+import com.robog.library.Utils;
 
 /**
  * @Author: yuxingdong
@@ -91,7 +90,7 @@ public class SegmentPainter extends AbsPainter {
     public boolean performDraw(Action action) {
 
         // 总路程
-        float distance = PixelUtil.calDistance(pointList, close());
+        float distance = Utils.calDistance(pointList, close());
 
         for (int i = 0; i < pointList.size(); i++) {
 
@@ -104,7 +103,7 @@ public class SegmentPainter extends AbsPainter {
                 next = pointList.get(0);
             }
             // 当前线段占总路径百分比
-            float fraction = PixelUtil.calFraction(distance, current, next);
+            float fraction = Utils.calFraction(distance, current, next);
             float segment = duration() * fraction / INTERVAL;
 
             float startX = current.getStartX();
@@ -132,7 +131,7 @@ public class SegmentPainter extends AbsPainter {
                 current.setEndX(moveX);
                 current.setEndY(moveY);
 
-                float moveDis = PixelUtil.getDis(current.getEndX(), current.getEndY(),
+                float moveDis = Utils.getDis(current.getEndX(), current.getEndY(),
                         current.getStartX(), current.getStartY());
 
                 // 如果当前点离目标点小于2倍单位时间长度，则认为当前线段已完成

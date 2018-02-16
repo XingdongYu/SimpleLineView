@@ -17,5 +17,7 @@ public interface Action {
 
     int getProgress();
 
+    int getStatus();
+
     List<PixelPoint> fetchCoordinate(Painter painter);
 }

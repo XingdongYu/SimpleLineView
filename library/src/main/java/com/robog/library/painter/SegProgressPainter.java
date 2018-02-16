@@ -1,11 +1,9 @@
 package com.robog.library.painter;
 
-import android.util.Log;
-
 import com.robog.library.Action;
 import com.robog.library.PixelPoint;
 import com.robog.library.PixelShape;
-import com.robog.library.PixelUtil;
+import com.robog.library.Utils;
 
 /**
  * @Author: yuxingdong
@@ -55,7 +53,7 @@ public class SegProgressPainter extends SegmentPainter {
         float endPercent = mPercent[1];
         float offsetPercent = endPercent - startPercent;
 
-        PixelUtil.resetPoint(pointList);
+        Utils.resetPoint(pointList);
 
         if (offsetPercent < 0) {
             throw new IllegalArgumentException("percent[1] must be greater than percent[0]!");
@@ -70,7 +68,7 @@ public class SegProgressPainter extends SegmentPainter {
 
         float realProgress = (progress - startPercent) / offsetPercent;
 
-        float distance = PixelUtil.calDistance(pointList, close());
+        float distance = Utils.calDistance(pointList, close());
         float allFraction = 0;
 
         for (int i = 0; i < pointList.size(); i++) {
@@ -84,7 +82,7 @@ public class SegProgressPainter extends SegmentPainter {
             }
 
             // 当前点与下一点连线占总长度的百分比
-            float fraction = PixelUtil.calFraction(distance, current, next);
+            float fraction = Utils.calFraction(distance, current, next);
             allFraction += fraction;
 
             if (realProgress >= allFraction) {

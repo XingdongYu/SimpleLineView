@@ -4,14 +4,11 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 import com.robog.library.painter.Painter;
 import com.robog.library.painter.TaskPainter;
-
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -40,18 +37,24 @@ public class SimpleLineView extends View implements Action {
     /**
      * TaskPainter能让之后的操作在线程中执行
      */
-    private final Painter mTaskPainter = new TaskPainter();
+    private final Painter mTaskPainter;
 
     private final Chain mChain;
 
     private int mProgress;
 
+    public static final int STATUS_START = 0;
+
+    public static final int STATUS_STICK = 1;
+
+    public static final int STATUS_STOP = 2;
+
     /**
-     * 是否继续绘制
+     * View启动状态
      * <p/>
-     * 如果是继续绘制，不会在{@link Action#fetchCoordinate(Painter)}中不会重置PixelPoint
+     * 如果是STATUS_START，则会在{@link TaskPainter#start(Chain, Action)}中重置PixelPoint
      */
-    private boolean mStick;
+    private int mStatus;
 
     public SimpleLineView(Context context) {
         this(context, null);
@@ -65,6 +68,7 @@ public class SimpleLineView extends View implements Action {
         super(context, attrs, defStyleAttr);
 
         // 默认在线程中
+        mTaskPainter = new TaskPainter(mPointPool);
         mPainters.add(mTaskPainter);
         mChain = new RealChain(mPainters, 0, this);
 
@@ -76,17 +80,13 @@ public class SimpleLineView extends View implements Action {
 
     public void start() {
 
-        mStick = false;
-        mPointPool.clear();
-
-        if (!isRunning()) {
-            mChain.proceed();
-        }
+        mStatus = STATUS_START;
+        mChain.proceed();
     }
 
     public void stick() {
 
-        mStick = true;
+        mStatus = STATUS_STICK;
         if (!isRunning()) {
             mChain.proceed();
         }
@@ -94,10 +94,10 @@ public class SimpleLineView extends View implements Action {
 
     public void stop() {
 
+        mStatus = STATUS_STOP;
         if (mCurrentPainter != null) {
             mCurrentPainter.stop();
         }
-        mStick = false;
     }
 
     public boolean isRunning() {
@@ -109,9 +109,24 @@ public class SimpleLineView extends View implements Action {
         return isRunning;
     }
 
-
     public SimpleLineView addPainter(Painter painter) {
         mPainters.add(painter);
+        return this;
+    }
+
+    public SimpleLineView addPainter(List<Painter> painters) {
+        mPainters.addAll(painters);
+        return this;
+    }
+
+    public SimpleLineView remove(Painter painter) {
+        mPainters.remove(painter);
+        return this;
+    }
+
+    public SimpleLineView clear() {
+        mPainters.clear();
+        mPainters.add(mTaskPainter);
         return this;
     }
 
@@ -152,7 +167,7 @@ public class SimpleLineView extends View implements Action {
     @Override
     public void setProgress(int progress) {
         mProgress = progress;
-        mStick = true;
+        mStatus = STATUS_STICK;
         mChain.proceed();
     }
 
@@ -162,15 +177,16 @@ public class SimpleLineView extends View implements Action {
     }
 
     @Override
+    public int getStatus() {
+        return mStatus;
+    }
+
+    @Override
     public List<PixelPoint> fetchCoordinate(Painter painter) {
 
         List<PixelPoint> pixelPoints = mPointPool.get(painter);
 
         if (pixelPoints != null) {
-            // 如果不是继续绘制，则重置point
-            if (!mStick) {
-                PixelUtil.resetPoint(pixelPoints);
-            }
 
             return pixelPoints;
 
