@@ -1,5 +1,7 @@
-package com.robog.simplelineview;
+package com.robog.simplelineview.ui;
 
+import android.content.Context;
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -13,14 +15,16 @@ import com.robog.library.painter.Painter;
 import com.robog.library.painter.CirclePainter;
 import com.robog.library.painter.SegProgressPainter;
 import com.robog.library.painter.SegmentPainter;
+import com.robog.simplelineview.DoubleCirclePainter;
+import com.robog.simplelineview.R;
 
-public class MainActivity extends AppCompatActivity {
+public class VariousSampleActivity extends AppCompatActivity {
 
-    private Painter mHookPainter, mCubePainter,
+    private Painter mHookPainter, mSquarePainter,
             mTrianglePainter, mReverseTrianglePainter,
             mLeftChaPainter, mRightChaPainter,
             mCloseStarPainter, mOpenStarPainter,
-            mHookProgressPainter, mCubeProgressPainter,
+            mHookProgressPainter, mSquareProgressPainter,
             mLeftChaProgressPainter, mRightChaProgressPainter;
 
     private CirclePainter mCiclePainter, mDoublemCiclePainter, mCicleProgressPainter;
@@ -54,7 +58,7 @@ public class MainActivity extends AppCompatActivity {
         PixelShape doubleCircleShape =
                 new PixelShape(400, 400, new int[]{1605, 12833, 146366, 158795});
         // 矩形
-        PixelShape cubeShape = new PixelShape(2, 2, new int[]{1, 2, 4, 3});
+        PixelShape squareShape = new PixelShape(2, 2, new int[]{1, 2, 4, 3});
         // 左上 -> 右下
         PixelShape leftChaShape = new PixelShape(10, 10, new int[]{34, 67});
         // 右上 -> 左下
@@ -68,9 +72,9 @@ public class MainActivity extends AppCompatActivity {
         mHookPainter = new SegmentPainter(hookShape, 1000, false);
         mHookProgressPainter = new SegProgressPainter(mHookPainter, new float[]{0.6f, 1});
 
-        // 矩形
-        mCubePainter = new SegmentPainter(cubeShape, 1000, true);
-        mCubeProgressPainter = new SegProgressPainter(mCubePainter, new float[]{0.6f, 1});
+        // 方形
+        mSquarePainter = new SegmentPainter(squareShape, 1000, true);
+        mSquareProgressPainter = new SegProgressPainter(mSquarePainter, new float[]{0.6f, 1});
 
         // 圆形
         mCiclePainter = new RealCirclePainter(circleShape, 1000,
@@ -98,11 +102,15 @@ public class MainActivity extends AppCompatActivity {
         mOpenStarPainter = new SegmentPainter(openStarShape, 2000, true);
     }
 
+    public static void launch(Context context) {
+        context.startActivity(new Intent(context, VariousSampleActivity.class));
+    }
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_various_sample);
 
         mView1 = findViewById(R.id.view1);
         mView2 = findViewById(R.id.view2);
@@ -122,7 +130,7 @@ public class MainActivity extends AppCompatActivity {
 
         mView5.addPainter(mCicleProgressPainter).addPainter(mHookProgressPainter).onMain();
         mView6.addPainter(mLeftChaProgressPainter).addPainter(mRightChaProgressPainter)
-                .addPainter(mCubeProgressPainter).onMain();
+                .addPainter(mSquareProgressPainter).onMain();
 
         ((SeekBar) findViewById(R.id.seek_bar))
                 .setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {

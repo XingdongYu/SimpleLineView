@@ -42,6 +42,10 @@ public class RealCirclePainter extends AbsPainter implements CirclePainter {
         this(painter.getShape(), painter.duration(), startAngle, sweepAngle, useCenter);
     }
 
+    public RealCirclePainter(PixelShape pixelShape) {
+        this(pixelShape, 1000, 0, 360, false);
+    }
+
     public RealCirclePainter(PixelShape pixelShape, int duration,
                              float startAngle, float sweepAngle, boolean useCenter) {
         mPixelShape = pixelShape;

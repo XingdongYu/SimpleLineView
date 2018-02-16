@@ -6,6 +6,7 @@
 效果图
 ---
 ![image](https://github.com/XingdongYu/SimpleLineView/blob/master/art/sample.gif)
+![image](https://github.com/XingdongYu/SimpleLineView/blob/master/art/sample1.gif)
 
 添加路径
 ---

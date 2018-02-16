@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Button
+        android:id="@+id/bt_clear"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="clear"
+        android:onClick="onClick" />
+
+    <Button
+        android:id="@+id/bt_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="start"
+        android:onClick="onClick"
+        app:layout_constraintTop_toBottomOf="@id/bt_clear"/>
+
+    <Button
+        android:id="@+id/bt_circle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="add circle"
+        android:onClick="onClick"
+        app:layout_constraintLeft_toRightOf="@id/bt_clear"
+        app:layout_constraintRight_toLeftOf="@id/bt_black"/>
+
+    <Button
+        android:id="@+id/bt_rectangle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="add rectangle"
+        android:onClick="onClick"
+        app:layout_constraintTop_toBottomOf="@id/bt_circle"
+        app:layout_constraintLeft_toLeftOf="@id/bt_circle"/>
+
+    <Button
+        android:id="@+id/bt_triangle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="add triangle"
+        android:onClick="onClick"
+        app:layout_constraintLeft_toLeftOf="@id/bt_circle"
+        app:layout_constraintTop_toBottomOf="@id/bt_rectangle"/>
+
+    <Button
+        android:id="@+id/bt_black"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="color black"
+        android:onClick="onClick"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+    <Button
+        android:id="@+id/bt_red"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="color red"
+        android:onClick="onClick"
+        app:layout_constraintTop_toTopOf="@id/bt_rectangle"
+        app:layout_constraintLeft_toLeftOf="@id/bt_black"/>
+
+    <Button
+        android:id="@+id/bt_blue"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="color blue"
+        android:onClick="onClick"
+        app:layout_constraintTop_toTopOf="@id/bt_triangle"
+        app:layout_constraintLeft_toLeftOf="@id/bt_black"/>
+
+    <com.robog.library.SimpleLineView
+        android:id="@+id/view"
+        android:layout_width="300dp"
+        android:layout_height="300dp"
+        android:layout_marginTop="20dp"
+        android:onClick="onClick"
+        app:layout_constraintTop_toBottomOf="@id/bt_triangle"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"/>
+
+</android.support.constraint.ConstraintLayout>

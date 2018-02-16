@@ -23,7 +23,11 @@ public class SegmentPainter extends AbsPainter {
     private boolean mClose;
 
     public SegmentPainter() {
-        this(null, 1000, false);
+        this(null, 1000, true);
+    }
+
+    public SegmentPainter(PixelShape pixelShape) {
+        this(pixelShape, 1000, true);
     }
 
     public SegmentPainter(Painter painter) {
@@ -149,7 +153,7 @@ public class SegmentPainter extends AbsPainter {
                     return false;
                 }
             }
-            // 更新最后一次，保证图像都绘制
+            // 保证图像都绘制
             action.update(this);
 
         }

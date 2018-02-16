@@ -111,7 +111,7 @@ public class SegProgressPainter extends SegmentPainter {
             }
 
         }
-        // 更新最后一次，保证图像都绘制
+        // 保证图像都绘制
         action.update(this);
         return true;
     }

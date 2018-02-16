@@ -81,7 +81,9 @@ public class SimpleLineView extends View implements Action {
     public void start() {
 
         mStatus = STATUS_START;
-        mChain.proceed();
+        if (!isRunning()) {
+            mChain.proceed();
+        }
     }
 
     public void stick() {
@@ -110,7 +112,8 @@ public class SimpleLineView extends View implements Action {
     }
 
     public SimpleLineView addPainter(Painter painter) {
-        mPainters.add(painter);
+        if (!mPainters.contains(painter))
+            mPainters.add(painter);
         return this;
     }
 
