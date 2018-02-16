@@ -14,6 +14,50 @@ import java.util.Map;
 public final class Utils {
 
     /**
+     * 设置点的实际坐标
+     * @param painter       当前painter
+     * @param pixelPoints   当前painter下所有点
+     * @param width         View宽
+     * @param height        View高
+     */
+    public static void setPoint(Painter painter, List<PixelPoint> pixelPoints, int width, int height) {
+
+        final PixelShape shape = painter.getShape();
+        final int[] path = shape.getPath();
+        final int horizontal = shape.getHorizontal();
+        final int vertical = shape.getVertical();
+
+        for (int target : path) {
+
+            if (target > horizontal * vertical) {
+                throw new IllegalArgumentException("Current coordinate [" + target + "] is invalid!");
+            }
+
+            int quotient = target / horizontal;
+            int remainder = target % horizontal;
+
+            float x;
+            float y;
+            float coefficientX;
+            float coefficientY;
+            if (remainder != 0) {
+                // 针对余数不为0时
+                coefficientX = remainder - 0.5f;
+                coefficientY = quotient + 0.5f;
+            } else {
+                // 余数为0时
+                coefficientX = horizontal - 0.5f;
+                coefficientY = quotient - 0.5f;
+            }
+            x = coefficientX *  width / horizontal;
+            y = coefficientY *  height / vertical;
+
+            PixelPoint pixelPoint = new PixelPoint(x, y);
+            pixelPoints.add(pixelPoint);
+        }
+    }
+
+    /**
      * 当{@link SimpleLineView}状态为STATUS_START时，
      * 会调用{@link PixelPoint#reset()}方法来重置所有PixelPoint状态
      * @param painterPool 缓存PixelPoint

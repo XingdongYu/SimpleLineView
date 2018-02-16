@@ -196,48 +196,13 @@ public class SimpleLineView extends View implements Action {
         } else {
 
             pixelPoints = new ArrayList<>();
-            setPoint(painter, pixelPoints);
+            Utils.setPoint(painter, pixelPoints, mWidth, mHeight);
             mPointPool.put(painter, pixelPoints);
 
             return pixelPoints;
         }
     }
 
-    private void setPoint(Painter painter, List<PixelPoint> pixelPoints) {
 
-        final PixelShape shape = painter.getShape();
-        final int[] path = shape.getPath();
-        final int horizontal = shape.getHorizontal();
-        final int vertical = shape.getVertical();
-
-        for (int target : path) {
-
-            if (target > horizontal * vertical) {
-                throw new IllegalArgumentException("Current coordinate [" + target + "] is invalid!");
-            }
-
-            int quotient = target / horizontal;
-            int remainder = target % horizontal;
-
-            float x;
-            float y;
-            float coefficientX;
-            float coefficientY;
-            if (remainder != 0) {
-                // 针对余数不为0时
-                coefficientX = remainder - 0.5f;
-                coefficientY = quotient + 0.5f;
-            } else {
-                // 余数为0时
-                coefficientX = horizontal - 0.5f;
-                coefficientY = quotient - 0.5f;
-            }
-            x = coefficientX *  mWidth / horizontal;
-            y = coefficientY *  mHeight / vertical;
-
-            PixelPoint pixelPoint = new PixelPoint(x, y);
-            pixelPoints.add(pixelPoint);
-        }
-    }
 
 }
