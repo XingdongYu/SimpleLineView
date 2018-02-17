@@ -8,6 +8,24 @@
 ![image](https://github.com/XingdongYu/SimpleLineView/blob/master/art/sample.gif)
 ![image](https://github.com/XingdongYu/SimpleLineView/blob/master/art/sample1.gif)
 
+使用
+---
+/build/gradle
+```
+allprojects {
+  repositories {
+    ...
+	  maven { url 'https://jitpack.io' }
+	}
+}
+```
+/app/gradle
+```
+dependencies {
+  implementation 'com.github.XingdongYu:SimpleLineView:v1.0.0'
+}
+```
+
 添加路径
 ---
 ```
