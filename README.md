@@ -1,15 +1,15 @@
 ## SimpleLineView
----
+
 这里简单借鉴了OkHttp的责任链模式，整体架构图如下：
 ![image](https://github.com/XingdongYu/SimpleLineView/blob/master/art/diagram.png)
 
 ### 效果图
----
+
 ![image](https://github.com/XingdongYu/SimpleLineView/blob/master/art/sample.gif)
 ![image](https://github.com/XingdongYu/SimpleLineView/blob/master/art/sample1.gif)
 
 ### 使用
----
+
 [![](https://jitpack.io/v/XingdongYu/SimpleLineView.svg)](https://jitpack.io/#XingdongYu/SimpleLineView)
 
 #### Gradle
@@ -42,7 +42,7 @@ dependencies {
 ```
 
 ### 添加路径
----
+
 ```
 PixelShape cubeShape = new PixelShape(2, 2, new int[]{1, 2, 4, 3});
 Painter cubePainter = new SegmentPainter(cubeShape, 1000, true);
@@ -56,7 +56,7 @@ mView.stick();
 ```
 
 ### 路径点
----
+
 以4 * 4的表格为例
 
 |  1 |  2 |  3 |  4 |
