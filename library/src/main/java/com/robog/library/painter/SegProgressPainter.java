@@ -2,7 +2,7 @@ package com.robog.library.painter;
 
 import com.robog.library.Action;
 import com.robog.library.PixelPoint;
-import com.robog.library.PixelShape;
+import com.robog.library.PixelPath;
 import com.robog.library.Utils;
 
 /**
@@ -27,12 +27,12 @@ public class SegProgressPainter extends SegmentPainter {
     }
 
     public SegProgressPainter(Painter painter, float[] percent) {
-        this(percent, painter.getShape(), painter.duration(), painter.close());
+        this(percent, painter.getPixelPath(), painter.duration(), painter.close());
     }
 
-    public SegProgressPainter(float[] percent, PixelShape pixelShape, int duration, boolean close) {
+    public SegProgressPainter(float[] percent, PixelPath pixelPath, int duration, boolean close) {
 
-        super(pixelShape, duration, close);
+        super(pixelPath, duration, close);
 
         if (percent == null || percent.length != 2) {
             throw new IllegalArgumentException("The length of percent must be 2!");

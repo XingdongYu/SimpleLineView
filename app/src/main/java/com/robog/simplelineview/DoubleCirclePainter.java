@@ -2,7 +2,7 @@ package com.robog.simplelineview;
 
 import android.graphics.Canvas;
 import android.graphics.RectF;
-import com.robog.library.PixelShape;
+import com.robog.library.PixelPath;
 import com.robog.library.painter.RealCirclePainter;
 
 /**
@@ -16,9 +16,9 @@ public class DoubleCirclePainter extends RealCirclePainter {
 
     private RectF mSmallRectF = new RectF();
 
-    public DoubleCirclePainter(PixelShape pixelShape, int duration,
-                             float startAngle, float sweepAngle, boolean useCenter) {
-        super(pixelShape, duration, startAngle, sweepAngle, useCenter);
+    public DoubleCirclePainter(PixelPath pixelPath, int duration,
+                               float startAngle, float sweepAngle, boolean useCenter) {
+        super(pixelPath, duration, startAngle, sweepAngle, useCenter);
     }
 
     @Override

@@ -6,7 +6,7 @@ import android.os.Looper;
 
 import com.robog.library.Action;
 import com.robog.library.Chain;
-import com.robog.library.PixelShape;
+import com.robog.library.PixelPath;
 
 /**
  * @Author: yuxingdong
@@ -22,7 +22,7 @@ public class DelayPainter implements Painter {
     }
 
     @Override
-    public PixelShape getShape() {
+    public PixelPath getPixelPath() {
         return null;
     }
 

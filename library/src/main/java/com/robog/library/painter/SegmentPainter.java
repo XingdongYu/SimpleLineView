@@ -4,7 +4,7 @@ import android.graphics.Canvas;
 
 import com.robog.library.Action;
 import com.robog.library.PixelPoint;
-import com.robog.library.PixelShape;
+import com.robog.library.PixelPath;
 import com.robog.library.Utils;
 
 /**
@@ -16,7 +16,7 @@ public class SegmentPainter extends AbstractPainter {
 
     private static final String TAG = "SegmentPainter";
 
-    private PixelShape mPixelShape;
+    private PixelPath mPixelPath;
 
     private int mDuration;
 
@@ -26,23 +26,23 @@ public class SegmentPainter extends AbstractPainter {
         this(null, 1000, true);
     }
 
-    public SegmentPainter(PixelShape pixelShape) {
-        this(pixelShape, 1000, true);
+    public SegmentPainter(PixelPath pixelPath) {
+        this(pixelPath, 1000, true);
     }
 
     public SegmentPainter(Painter painter) {
-        this(painter.getShape(), painter.duration(), painter.close());
+        this(painter.getPixelPath(), painter.duration(), painter.close());
     }
 
-    public SegmentPainter(PixelShape pixelShape, int duration, boolean close) {
-        mPixelShape = pixelShape;
+    public SegmentPainter(PixelPath pixelPath, int duration, boolean close) {
+        mPixelPath = pixelPath;
         mDuration = duration;
         mClose = close;
     }
 
     @Override
-    public PixelShape getShape() {
-        return mPixelShape;
+    public PixelPath getPixelPath() {
+        return mPixelPath;
     }
 
     @Override

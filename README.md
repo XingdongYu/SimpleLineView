@@ -44,8 +44,8 @@ dependencies {
 添加路径
 ---
 ```
-PixelShape cubeShape = new PixelShape(2, 2, new int[]{1, 2, 4, 3});
-Painter cubePainter = new SegmentPainter(cubeShape, 1000, true);
+PixelPath cubePath = new PixelPath(2, 2, new int[]{1, 2, 4, 3});
+Painter cubePainter = new SegmentPainter(cubePath, 1000, true);
 mView.addPainter(cubePainter);
 //启动
 mView.start();

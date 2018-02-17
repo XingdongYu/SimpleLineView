@@ -2,7 +2,7 @@ package com.robog.library.painter;
 
 import com.robog.library.Action;
 import com.robog.library.PixelPoint;
-import com.robog.library.PixelShape;
+import com.robog.library.PixelPath;
 
 /**
  * @Author: yuxingdong
@@ -39,13 +39,13 @@ public class CircleProgressPainter extends RealCirclePainter {
 
     public CircleProgressPainter(Painter painter, float[] percent,
                                  float startAngle, float sweepAngle, boolean useCenter) {
-        this(percent, painter.getShape(), painter.duration(), startAngle, sweepAngle, useCenter);
+        this(percent, painter.getPixelPath(), painter.duration(), startAngle, sweepAngle, useCenter);
     }
 
-    public CircleProgressPainter(float[] percent, PixelShape pixelShape, int duration,
+    public CircleProgressPainter(float[] percent, PixelPath pixelPath, int duration,
                                  float startAngle, float sweepAngle, boolean useCenter) {
 
-        super(pixelShape, duration, startAngle, sweepAngle, useCenter);
+        super(pixelPath, duration, startAngle, sweepAngle, useCenter);
 
         if (percent == null || percent.length != 2) {
             throw new IllegalArgumentException("The length of percent must be 2!");

@@ -9,7 +9,7 @@ import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 
-import com.robog.library.PixelShape;
+import com.robog.library.PixelPath;
 import com.robog.library.SimpleLineView;
 import com.robog.library.painter.CirclePainter;
 import com.robog.library.painter.Painter;
@@ -35,14 +35,14 @@ public class AddSampleActivity extends AppCompatActivity {
     private Paint mCurrentPaint;
 
     {
-        PixelShape circleShape = new PixelShape(5, 5, new int[]{7, 19});
-        mCirclePainter = new RealCirclePainter(circleShape);
+        PixelPath circlePath = new PixelPath(5, 5, new int[]{7, 19});
+        mCirclePainter = new RealCirclePainter(circlePath);
 
-        PixelShape rectShape = new PixelShape(5, 5, new int[]{1, 5, 25, 21});
-        mRectPainter = new SegmentPainter(rectShape);
+        PixelPath rectPath = new PixelPath(5, 5, new int[]{1, 5, 25, 21});
+        mRectPainter = new SegmentPainter(rectPath);
 
-        PixelShape triangleShape = new PixelShape(5, 5, new int[]{8, 17, 19});
-        mTrianglePainter = new SegmentPainter(triangleShape);
+        PixelPath trianglePath = new PixelPath(5, 5, new int[]{8, 17, 19});
+        mTrianglePainter = new SegmentPainter(trianglePath);
     }
 
     public static void launch(Context context) {

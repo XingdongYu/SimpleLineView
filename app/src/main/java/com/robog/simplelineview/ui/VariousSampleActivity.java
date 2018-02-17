@@ -7,7 +7,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.SeekBar;
 
-import com.robog.library.PixelShape;
+import com.robog.library.PixelPath;
 import com.robog.library.SimpleLineView;
 import com.robog.library.painter.RealCirclePainter;
 import com.robog.library.painter.CircleProgressPainter;
@@ -45,44 +45,44 @@ public class VariousSampleActivity extends AppCompatActivity {
     private SimpleLineView mView1, mView2, mView3, mView4, mView5, mView6;
 
     {
-        // 钩子形状
-        PixelShape hookShape = new PixelShape(10, 10, new int[]{43, 65, 38});
+        // 钩
+        PixelPath hookPath = new PixelPath(10, 10, new int[]{43, 65, 38});
         // 三角形
-        PixelShape triangleShape =
-                new PixelShape(400, 400, new int[]{15800, 112063, 112337});
+        PixelPath trianglePath =
+                new PixelPath(400, 400, new int[]{15800, 112063, 112337});
         // 倒三角
-        PixelShape reverseTriangleShape =
-                new PixelShape(400, 400, new int[]{47263, 143400, 47537});
+        PixelPath reverseTrianglePath =
+                new PixelPath(400, 400, new int[]{47263, 143400, 47537});
         // 圆形
-        PixelShape circleShape =
-                new PixelShape(10, 10, new int[]{1, 100});
+        PixelPath circlePath =
+                new PixelPath(10, 10, new int[]{1, 100});
         // 同时画两个圆
         // 这里设置了两组像素点作为两个圆的Rect
-        PixelShape doubleCircleShape =
-                new PixelShape(400, 400, new int[]{1605, 12833, 146366, 158795});
+        PixelPath doubleCirclePath =
+                new PixelPath(400, 400, new int[]{1605, 12833, 146366, 158795});
         // 矩形
-        PixelShape squareShape = new PixelShape(2, 2, new int[]{1, 2, 4, 3});
+        PixelPath squarePath = new PixelPath(2, 2, new int[]{1, 2, 4, 3});
         // 左上 -> 右下
-        PixelShape leftChaShape = new PixelShape(10, 10, new int[]{34, 67});
+        PixelPath leftChaPath = new PixelPath(10, 10, new int[]{34, 67});
         // 右上 -> 左下
-        PixelShape rightChaShape = new PixelShape(10, 10, new int[]{37, 64});
+        PixelPath rightChaPath = new PixelPath(10, 10, new int[]{37, 64});
         // 连线五角星
-        PixelShape closeStarShape = new PixelShape(200, 200, CLOSE_FIVE_STAR);
+        PixelPath closeStarPath = new PixelPath(200, 200, CLOSE_FIVE_STAR);
         // 空心五角星
-        PixelShape openStarShape = new PixelShape(200, 200, OPEN_FIVE_STAR);
+        PixelPath openStarPath = new PixelPath(200, 200, OPEN_FIVE_STAR);
 
         // 钩
-        mHookPainter = new SegmentPainter(hookShape, 1000, false);
+        mHookPainter = new SegmentPainter(hookPath, 1000, false);
         mHookProgressPainter = new SegProgressPainter(mHookPainter, new float[]{0.6f, 1});
 
         // 方形
-        mSquarePainter = new SegmentPainter(squareShape, 1000, true);
+        mSquarePainter = new SegmentPainter(squarePath, 1000, true);
         mSquareProgressPainter = new SegProgressPainter(mSquarePainter, new float[]{0.6f, 1});
 
         // 圆形
-        mCiclePainter = new RealCirclePainter(circleShape, 1000,
+        mCiclePainter = new RealCirclePainter(circlePath, 1000,
                 -120, 360, false);
-        mDoublemCiclePainter = new DoubleCirclePainter(doubleCircleShape,
+        mDoublemCiclePainter = new DoubleCirclePainter(doubleCirclePath,
                 1000, 90, 360, false);
 
         // 由于原图片外层原与图片边框相切, 默认画笔设置了宽度，因此这里需要设padding，
@@ -91,19 +91,19 @@ public class VariousSampleActivity extends AppCompatActivity {
         mCicleProgressPainter = new CircleProgressPainter(mCiclePainter, new float[]{0, 0.4f});
 
         // 三角形
-        mTrianglePainter = new SegmentPainter(triangleShape, 800, true);
+        mTrianglePainter = new SegmentPainter(trianglePath, 800, true);
         // 倒三角
-        mReverseTrianglePainter = new SegmentPainter(reverseTriangleShape, 800, true);
+        mReverseTrianglePainter = new SegmentPainter(reverseTrianglePath, 800, true);
 
         // 这里的叉分了两笔画
-        mLeftChaPainter = new SegmentPainter(leftChaShape, 300, false);
-        mRightChaPainter = new SegmentPainter(rightChaShape, 300, false);
+        mLeftChaPainter = new SegmentPainter(leftChaPath, 300, false);
+        mRightChaPainter = new SegmentPainter(rightChaPath, 300, false);
         mLeftChaProgressPainter = new SegProgressPainter(mLeftChaPainter, new float[]{0f, 0.3f});
         mRightChaProgressPainter = new SegProgressPainter(mRightChaPainter, new float[]{0.3f, 0.6f});
 
         // 五角星
-        mCloseStarPainter = new SegmentPainter(closeStarShape, 2000, true);
-        mOpenStarPainter = new SegmentPainter(openStarShape, 2000, true);
+        mCloseStarPainter = new SegmentPainter(closeStarPath, 2000, true);
+        mOpenStarPainter = new SegmentPainter(openStarPath, 2000, true);
     }
 
     public static void launch(Context context) {

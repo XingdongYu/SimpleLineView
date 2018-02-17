@@ -5,7 +5,7 @@ import android.graphics.RectF;
 
 import com.robog.library.Action;
 import com.robog.library.PixelPoint;
-import com.robog.library.PixelShape;
+import com.robog.library.PixelPath;
 
 /**
  * @Author: yuxingdong
@@ -16,7 +16,7 @@ public class RealCirclePainter extends AbstractPainter implements CirclePainter 
 
     private static final String TAG = "RealCirclePainter";
 
-    private PixelShape mPixelShape;
+    private PixelPath mPixelPath;
 
     private int mDuration;
 
@@ -39,16 +39,16 @@ public class RealCirclePainter extends AbstractPainter implements CirclePainter 
     }
 
     public RealCirclePainter(Painter painter, float startAngle, float sweepAngle, boolean useCenter) {
-        this(painter.getShape(), painter.duration(), startAngle, sweepAngle, useCenter);
+        this(painter.getPixelPath(), painter.duration(), startAngle, sweepAngle, useCenter);
     }
 
-    public RealCirclePainter(PixelShape pixelShape) {
-        this(pixelShape, 1000, 0, 360, false);
+    public RealCirclePainter(PixelPath pixelPath) {
+        this(pixelPath, 1000, 0, 360, false);
     }
 
-    public RealCirclePainter(PixelShape pixelShape, int duration,
+    public RealCirclePainter(PixelPath pixelPath, int duration,
                              float startAngle, float sweepAngle, boolean useCenter) {
-        mPixelShape = pixelShape;
+        mPixelPath = pixelPath;
         mDuration = duration;
         mStartAngle = startAngle;
         mSweepAngle = sweepAngle;
@@ -56,8 +56,8 @@ public class RealCirclePainter extends AbstractPainter implements CirclePainter 
     }
 
     @Override
-    public PixelShape getShape() {
-        return mPixelShape;
+    public PixelPath getPixelPath() {
+        return mPixelPath;
     }
 
     @Override

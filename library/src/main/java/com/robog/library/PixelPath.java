@@ -5,7 +5,7 @@ package com.robog.library;
  * @Time: 2018/2/9
  */
 
-public class PixelShape {
+public class PixelPath {
 
     private int mHorizontal;
 
@@ -13,7 +13,7 @@ public class PixelShape {
 
     private int[] mPath;
 
-    public PixelShape(int horizontal, int vertical, int[] path) {
+    public PixelPath(int horizontal, int vertical, int[] path) {
         mHorizontal = horizontal;
         mVertical = vertical;
         mPath = path;

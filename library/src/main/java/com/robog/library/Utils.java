@@ -2,7 +2,6 @@ package com.robog.library;
 
 import com.robog.library.painter.Painter;
 
-import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
@@ -22,10 +21,10 @@ public final class Utils {
      */
     public static void setPoint(Painter painter, List<PixelPoint> pixelPoints, int width, int height) {
 
-        final PixelShape shape = painter.getShape();
-        final int[] path = shape.getPath();
-        final int horizontal = shape.getHorizontal();
-        final int vertical = shape.getVertical();
+        final PixelPath pixelPath = painter.getPixelPath();
+        final int[] path = pixelPath.getPath();
+        final int horizontal = pixelPath.getHorizontal();
+        final int vertical = pixelPath.getVertical();
 
         for (int target : path) {
 

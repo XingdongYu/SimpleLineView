@@ -5,7 +5,7 @@ import android.graphics.Paint;
 
 import com.robog.library.Action;
 import com.robog.library.Chain;
-import com.robog.library.PixelShape;
+import com.robog.library.PixelPath;
 
 /**
  * @Author: yuxingdong
@@ -14,7 +14,7 @@ import com.robog.library.PixelShape;
 
 public interface Painter {
 
-    PixelShape getShape();
+    PixelPath getPixelPath();
 
     int duration();
 
