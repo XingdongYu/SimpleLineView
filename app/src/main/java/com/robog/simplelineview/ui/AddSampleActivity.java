@@ -86,6 +86,7 @@ public class AddSampleActivity extends AppCompatActivity {
             case R.id.bt_blue:
                 mCurrentPaint.setColor(Color.BLUE);
                 break;
+            default:
         }
     }
 

@@ -5,8 +5,10 @@ import android.graphics.Canvas;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.view.View;
+
 import com.robog.library.painter.Painter;
 import com.robog.library.painter.TaskPainter;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -35,7 +37,7 @@ public class SimpleLineView extends View implements Action {
     private Painter mCurrentPainter;
 
     /**
-     * TaskPainter能让之后的操作在线程中执行
+     * 让之后的操作在线程中执行
      */
     private final Painter mTaskPainter;
 
@@ -103,17 +105,13 @@ public class SimpleLineView extends View implements Action {
     }
 
     public boolean isRunning() {
-        boolean isRunning = false;
-
-        for (Painter painter : mPainters) {
-            isRunning |= painter.isRunning();
-        }
-        return isRunning;
+        return mTaskPainter.isRunning();
     }
 
     public SimpleLineView addPainter(Painter painter) {
-        if (!mPainters.contains(painter))
+        if (!mPainters.contains(painter)) {
             mPainters.add(painter);
+        }
         return this;
     }
 
@@ -133,6 +131,7 @@ public class SimpleLineView extends View implements Action {
         return this;
     }
 
+    // TODO: 2018/2/16 若setProgress过快，上一步onDraw可能未完成，这种情况下画面会闪。这里先放主线程处理了。
     public SimpleLineView onMain() {
         mPainters.remove(mTaskPainter);
         return this;
@@ -193,16 +192,14 @@ public class SimpleLineView extends View implements Action {
 
             return pixelPoints;
 
-        } else {
-
-            pixelPoints = new ArrayList<>();
-            Utils.setPoint(painter, pixelPoints, mWidth, mHeight);
-            mPointPool.put(painter, pixelPoints);
-
-            return pixelPoints;
         }
+
+        pixelPoints = new ArrayList<>();
+        Utils.setPoint(painter, pixelPoints, mWidth, mHeight);
+        mPointPool.put(painter, pixelPoints);
+
+        return pixelPoints;
+
     }
-
-
 
 }

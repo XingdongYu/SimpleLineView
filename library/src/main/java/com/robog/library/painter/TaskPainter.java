@@ -2,6 +2,7 @@ package com.robog.library.painter;
 
 
 import android.support.annotation.NonNull;
+import android.util.Log;
 
 import com.robog.library.Action;
 import com.robog.library.Chain;
@@ -27,7 +28,7 @@ import static com.robog.library.SimpleLineView.STATUS_START;
 
 public class TaskPainter extends DelayPainter {
 
-    private static final ThreadFactory sThreadFactory = new ThreadFactory() {
+    private static final ThreadFactory FACTORY = new ThreadFactory() {
 
         private final AtomicInteger mCount = new AtomicInteger(1);
 
@@ -37,11 +38,13 @@ public class TaskPainter extends DelayPainter {
         }
     };
 
-    private static final ThreadPoolExecutor sExecutor =
+    private static final ThreadPoolExecutor EXECUTOR =
             new ThreadPoolExecutor(0, Integer.MAX_VALUE,
-            60L, TimeUnit.SECONDS, new SynchronousQueue<Runnable>(), sThreadFactory);
+            60L, TimeUnit.SECONDS, new SynchronousQueue<Runnable>(), FACTORY);
 
     private final Map<Painter, List<PixelPoint>> mPainterPool;
+
+    private boolean mIsRunning;
 
     public TaskPainter(Map<Painter, List<PixelPoint>> painters) {
         super(0);
@@ -50,16 +53,22 @@ public class TaskPainter extends DelayPainter {
 
     @Override
     public void start(final Chain chain, final Action action) {
-        sExecutor.execute(new Runnable() {
+        mIsRunning = true;
+        EXECUTOR.execute(new Runnable() {
             @Override
             public void run() {
-                // 当status为start时，重置
+                // 当status为start时重置point
                 if (action.getStatus() == STATUS_START) {
                     Utils.resetPointStatus(mPainterPool);
                 }
                 chain.proceed();
+                mIsRunning = false;
             }
         });
     }
 
+    @Override
+    public boolean isRunning() {
+        return mIsRunning;
+    }
 }

@@ -18,6 +18,9 @@ import com.robog.library.painter.SegmentPainter;
 import com.robog.simplelineview.DoubleCirclePainter;
 import com.robog.simplelineview.R;
 
+/**
+ * @author yuxingdong
+ */
 public class VariousSampleActivity extends AppCompatActivity {
 
     private Painter mHookPainter, mSquarePainter,
@@ -81,6 +84,7 @@ public class VariousSampleActivity extends AppCompatActivity {
                 -120, 360, false);
         mDoublemCiclePainter = new DoubleCirclePainter(doubleCircleShape,
                 1000, 90, 360, false);
+
         // 由于原图片外层原与图片边框相切, 默认画笔设置了宽度，因此这里需要设padding，
         // 否则圆线条与view相切部分不完整。
         mDoublemCiclePainter.setPadding(6);
@@ -134,22 +138,22 @@ public class VariousSampleActivity extends AppCompatActivity {
 
         ((SeekBar) findViewById(R.id.seek_bar))
                 .setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
-            @Override
-            public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                mView5.setProgress(progress);
-                mView6.setProgress(progress);
-            }
+                    @Override
+                    public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
+                        mView5.setProgress(progress);
+                        mView6.setProgress(progress);
+                    }
 
-            @Override
-            public void onStartTrackingTouch(SeekBar seekBar) {
+                    @Override
+                    public void onStartTrackingTouch(SeekBar seekBar) {
 
-            }
+                    }
 
-            @Override
-            public void onStopTrackingTouch(SeekBar seekBar) {
+                    @Override
+                    public void onStopTrackingTouch(SeekBar seekBar) {
 
-            }
-        });
+                    }
+                });
     }
 
     public void onClick(View view) {
@@ -172,6 +176,7 @@ public class VariousSampleActivity extends AppCompatActivity {
                 mView3.stop();
                 mView4.stop();
                 break;
+            default:
         }
     }
 

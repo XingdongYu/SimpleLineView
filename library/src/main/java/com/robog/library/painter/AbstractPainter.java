@@ -16,9 +16,9 @@ import java.util.List;
  * @Time: 2018/2/9
  */
 
-public abstract class AbsPainter implements Painter {
+public abstract class AbstractPainter implements Painter {
 
-    private static final String TAG = "AbsPainter";
+    private static final String TAG = "AbstractPainter";
 
     /**
      * 动画每一帧时长
@@ -36,7 +36,7 @@ public abstract class AbsPainter implements Painter {
 
     protected Paint paint = new Paint(Paint.ANTI_ALIAS_FLAG);
 
-    public AbsPainter() {
+    public AbstractPainter() {
         paint.setColor(Color.WHITE);
         paint.setStyle(Paint.Style.STROKE);
         paint.setStrokeWidth(8);
@@ -91,6 +91,10 @@ public abstract class AbsPainter implements Painter {
         realDraw(canvas);
     }
 
+    /**
+     * 真正实现绘制的方法
+     * @param canvas
+     */
     protected abstract void realDraw(Canvas canvas);
 
 

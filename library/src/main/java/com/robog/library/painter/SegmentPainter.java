@@ -12,7 +12,7 @@ import com.robog.library.Utils;
  * @Time: 2018/2/9
  */
 
-public class SegmentPainter extends AbsPainter {
+public class SegmentPainter extends AbstractPainter {
 
     private static final String TAG = "SegmentPainter";
 
@@ -73,7 +73,9 @@ public class SegmentPainter extends AbsPainter {
             if (i < pointList.size() - 1) {
                 next = pointList.get(i + 1);
             } else {
-                if (!close()) return;
+                if (!close()) {
+                    return;
+                }
                 next = pointList.get(0);
             }
             // 如果是完整画完当前笔，或者当前点已完整绘制，则当前点起始点与下一点起始点相连
@@ -126,8 +128,9 @@ public class SegmentPainter extends AbsPainter {
 
             while (!current.isPathFinish()) {
 
-                if (!isRunning())
+                if (!isRunning()) {
                     return false;
+                }
 
                 float moveX = (float) (current.getEndX() + div * Math.cos(degree));
                 float moveY = (float) (current.getEndY() + div * Math.sin(degree));

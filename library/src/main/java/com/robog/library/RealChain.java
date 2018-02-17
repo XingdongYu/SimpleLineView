@@ -35,7 +35,9 @@ public class RealChain implements Chain {
             mOnFinishListener.onFinish(mIndex - 1);
         }
 
-        if (mIndex == mPainters.size()) return;
+        if (mIndex == mPainters.size()) {
+            return;
+        }
 
         Chain next = mChainPool.get(mIndex);
 

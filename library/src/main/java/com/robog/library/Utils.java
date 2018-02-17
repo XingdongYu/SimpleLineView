@@ -97,7 +97,9 @@ public final class Utils {
             if (i < pointList.size() - 1) {
                 next = pointList.get(i + 1);
             } else {
-                if (!close) break;
+                if (!close) {
+                    break;
+                }
                 next = pointList.get(0);
             }
             distance += getDis(current, next);

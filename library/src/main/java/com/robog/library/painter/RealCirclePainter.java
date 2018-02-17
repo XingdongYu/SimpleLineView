@@ -12,7 +12,7 @@ import com.robog.library.PixelShape;
  * @Time: 2018/2/9
  */
 
-public class RealCirclePainter extends AbsPainter implements CirclePainter {
+public class RealCirclePainter extends AbstractPainter implements CirclePainter {
 
     private static final String TAG = "RealCirclePainter";
 
@@ -127,8 +127,9 @@ public class RealCirclePainter extends AbsPainter implements CirclePainter {
             }
             while (angle <= mSweepAngle) {
 
-                if (!isRunning())
+                if (!isRunning()) {
                     return false;
+                }
 
                 angle += div;
                 if (!update(action, point, angle)) {
@@ -142,8 +143,9 @@ public class RealCirclePainter extends AbsPainter implements CirclePainter {
             }
             while (angle >= mSweepAngle) {
 
-                if (!isRunning())
+                if (!isRunning()) {
                     return false;
+                }
 
                 angle -= div;
                 if (!update(action, point, angle)) {
