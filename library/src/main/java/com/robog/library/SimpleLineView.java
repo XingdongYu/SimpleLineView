@@ -131,7 +131,6 @@ public class SimpleLineView extends View implements Action {
         return this;
     }
 
-    // TODO: 2018/2/16 若setProgress过快，上一步onDraw可能未完成，这种情况下画面会闪。这里先放主线程处理了。
     public SimpleLineView onMain() {
         mPainters.remove(mTaskPainter);
         return this;

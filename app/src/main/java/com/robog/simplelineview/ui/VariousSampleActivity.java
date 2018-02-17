@@ -132,6 +132,8 @@ public class VariousSampleActivity extends AppCompatActivity {
         mView3.addPainter(mCloseStarPainter);
         mView4.addPainter(mOpenStarPainter);
 
+        // TODO: 2018/2/16 若setProgress过快，上一步onDraw可能未完成，这种情况下画面会闪动。
+        // 这里先放主线程处理了
         mView5.addPainter(mCicleProgressPainter).addPainter(mHookProgressPainter).onMain();
         mView6.addPainter(mLeftChaProgressPainter).addPainter(mRightChaProgressPainter)
                 .addPainter(mSquareProgressPainter).onMain();
