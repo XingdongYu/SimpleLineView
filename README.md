@@ -1,32 +1,47 @@
 ## SimpleLineView
-
+---
 这里简单借鉴了OkHttp的责任链模式，整体架构图如下：
 ![image](https://github.com/XingdongYu/SimpleLineView/blob/master/art/diagram.png)
 
-效果图
+### 效果图
 ---
 ![image](https://github.com/XingdongYu/SimpleLineView/blob/master/art/sample.gif)
 ![image](https://github.com/XingdongYu/SimpleLineView/blob/master/art/sample1.gif)
 
-使用
+### 使用
 ---
-/build/gradle
+[![](https://jitpack.io/v/XingdongYu/SimpleLineView.svg)](https://jitpack.io/#XingdongYu/SimpleLineView)
+
+#### Gradle
 ```
 allprojects {
-  repositories {
-    ...
-	  maven { url 'https://jitpack.io' }
+	repositories {
+		...
+		maven { url 'https://jitpack.io' }
 	}
 }
-```
-/app/gradle
-```
+
 dependencies {
-  implementation 'com.github.XingdongYu:SimpleLineView:v1.0.0'
+	implementation 'com.github.XingdongYu:SimpleLineView:v1.0.0'
 }
 ```
+#### Maven
+```
+<repositories>
+	<repository>
+	    <id>jitpack.io</id>
+	    <url>https://jitpack.io</url>
+	</repository>
+</repositories>
 
-添加路径
+<dependency>
+    <groupId>com.github.XingdongYu</groupId>
+    <artifactId>SimpleLineView</artifactId>
+    <version>v1.0.0</version>
+</dependency>
+```
+
+### 添加路径
 ---
 ```
 PixelShape cubeShape = new PixelShape(2, 2, new int[]{1, 2, 4, 3});
@@ -40,7 +55,7 @@ mView.stop();
 mView.stick();
 ```
 
-路径点
+### 路径点
 ---
 以4 * 4的表格为例
 
