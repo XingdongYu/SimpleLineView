@@ -1,5 +1,7 @@
 ## SimpleLineView
 
+介绍: http://blog.csdn.net/kobeyxd123/article/details/79346263
+
 这里简单借鉴了OkHttp的责任链模式，整体架构图如下：
 ![image](https://github.com/XingdongYu/SimpleLineView/blob/master/art/diagram.png)
 
@@ -44,14 +46,19 @@ dependencies {
 添加路径
 ---
 ```
-PixelPath cubePath = new PixelPath(2, 2, new int[]{1, 2, 4, 3});
-Painter cubePainter = new SegmentPainter(cubePath, 1000, true);
-mView.addPainter(cubePainter);
-//启动
+// 圆形
+PixelPath circlePath = new PixelPath(10, 10, new int[]{1, 100});
+CirclePainter ciclePainter = new RealCirclePainter(circlePath, 1000, -120, 360, false);
+// 矩形
+PixelPath squarePath = new PixelPath(2, 2, new int[]{1, 2, 4, 3});
+Painter squarePainter = new SegmentPainter(squarePath, 1000, true);
+
+mView.addPainter(ciclePainter).addPainter(squarePainter);
+// 启动
 mView.start();
-//停止
+// 停止
 mView.stop();
-//继续
+// 继续
 mView.stick();
 ```
 
