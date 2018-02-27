@@ -75,3 +75,19 @@ mView.stick();
 如果path为{1, 13, 16, 4}, 则绘制的图形为依次连接1，13，16，4的矩形(是否封闭可设置对应参数)。
 
 如果图形的形状比较复杂，可以用PS打开图片，依次获取像素点的x和y值(这里x和y值的单位可以是像素、厘米等，但是计算时要与图像大小的单位一致)。假设图像宽为w, 高为h, 则当前点的值为 w * ( y - 1) + x。
+
+```
+Copyright 2018 Yu Xingdong
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+    http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+```

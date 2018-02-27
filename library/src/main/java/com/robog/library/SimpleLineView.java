@@ -21,7 +21,7 @@ import java.util.Map;
 
 public class SimpleLineView extends View implements Action {
 
-    private static final String TAG = "LitePathView";
+    private static final String TAG = "SimpleLineView";
 
     private int mWidth;
 
