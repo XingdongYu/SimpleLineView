@@ -13,6 +13,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Executor;
 
 /**
  * @Author: yuxingdong
@@ -39,7 +40,7 @@ public class SimpleLineView extends View implements Action {
     /**
      * 让之后的操作在线程中执行
      */
-    private final Painter mTaskPainter;
+    private final TaskPainter mTaskPainter;
 
     private final Chain mChain;
 
@@ -133,6 +134,11 @@ public class SimpleLineView extends View implements Action {
 
     public SimpleLineView onMain() {
         mPainters.remove(mTaskPainter);
+        return this;
+    }
+
+    public SimpleLineView setExecutor(Executor executor) {
+        mTaskPainter.setExecutor(executor);
         return this;
     }
 

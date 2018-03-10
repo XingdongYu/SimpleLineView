@@ -18,6 +18,10 @@ import com.robog.library.painter.SegmentPainter;
 import com.robog.simplelineview.DoubleCirclePainter;
 import com.robog.simplelineview.R;
 
+import java.util.concurrent.Executor;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+
 /**
  * @author yuxingdong
  */
@@ -106,6 +110,8 @@ public class VariousSampleActivity extends AppCompatActivity {
         mOpenStarPainter = new SegmentPainter(openStarPath, 2000, true);
     }
 
+    private ExecutorService mSingleExecutor = Executors.newSingleThreadExecutor();
+
     public static void launch(Context context) {
         context.startActivity(new Intent(context, VariousSampleActivity.class));
     }
@@ -125,7 +131,7 @@ public class VariousSampleActivity extends AppCompatActivity {
 
         mView1.addPainter(mDoublemCiclePainter)
                 .addPainter(mTrianglePainter)
-                .addPainter(mReverseTrianglePainter);
+                .addPainter(mReverseTrianglePainter).setExecutor(mSingleExecutor);
         mView2.addPainter(mCiclePainter)
                 .addPainter(mLeftChaPainter)
                 .addPainter(mRightChaPainter);

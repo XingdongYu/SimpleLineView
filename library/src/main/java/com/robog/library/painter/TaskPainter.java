@@ -13,6 +13,7 @@ import com.robog.library.Utils;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.Executor;
 import java.util.concurrent.SynchronousQueue;
 import java.util.concurrent.ThreadFactory;
 import java.util.concurrent.ThreadPoolExecutor;
@@ -38,9 +39,11 @@ public class TaskPainter extends DelayPainter {
         }
     };
 
-    private static final ThreadPoolExecutor EXECUTOR =
+    private static final ThreadPoolExecutor CACHE_EXECUTOR =
             new ThreadPoolExecutor(0, Integer.MAX_VALUE,
             60L, TimeUnit.SECONDS, new SynchronousQueue<Runnable>(), FACTORY);
+
+    private static Executor sExecutor = CACHE_EXECUTOR;
 
     private final Map<Painter, List<PixelPoint>> mPainterPool;
 
@@ -54,7 +57,7 @@ public class TaskPainter extends DelayPainter {
     @Override
     public void start(final Chain chain, final Action action) {
         mIsRunning = true;
-        EXECUTOR.execute(new Runnable() {
+        sExecutor.execute(new Runnable() {
             @Override
             public void run() {
                 // 当status为start时重置point
@@ -70,5 +73,9 @@ public class TaskPainter extends DelayPainter {
     @Override
     public boolean isRunning() {
         return mIsRunning;
+    }
+
+    public void setExecutor(Executor executor) {
+        sExecutor = executor;
     }
 }
