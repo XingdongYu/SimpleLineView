@@ -9,6 +9,7 @@ import android.widget.SeekBar;
 
 import com.robog.library.PixelPath;
 import com.robog.library.SimpleLineView;
+import com.robog.library.painter.DelayPainter;
 import com.robog.library.painter.RealCirclePainter;
 import com.robog.library.painter.CircleProgressPainter;
 import com.robog.library.painter.Painter;
@@ -131,10 +132,12 @@ public class VariousSampleActivity extends AppCompatActivity {
 
         mView1.addPainter(mDoublemCiclePainter)
                 .addPainter(mTrianglePainter)
-                .addPainter(mReverseTrianglePainter).setExecutor(mSingleExecutor);
+                .addPainter(mReverseTrianglePainter);
         mView2.addPainter(mCiclePainter)
                 .addPainter(mLeftChaPainter)
-                .addPainter(mRightChaPainter);
+                .addPainter(mRightChaPainter)
+                .addPainter(new DelayPainter(500))
+                .infinite();
         mView3.addPainter(mCloseStarPainter);
         mView4.addPainter(mOpenStarPainter);
 

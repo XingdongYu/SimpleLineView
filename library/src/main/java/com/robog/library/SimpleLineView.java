@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Canvas;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.view.View;
 
 import com.robog.library.painter.Painter;
@@ -52,6 +53,23 @@ public class SimpleLineView extends View implements Action {
 
     public static final int STATUS_STOP = 2;
 
+    private boolean mIsFinish;
+
+    private final Chain.OnFinishListener mInfiniteListener = new Chain.OnFinishListener() {
+        @Override
+        public void onFinish(int index) {
+            if (index == mPainters.size() - 1 && !mIsFinish) {
+                mStatus = STATUS_START;
+                mChain.proceed();
+            }
+        }
+    };
+
+    public void infinite() {
+        mIsFinish = false;
+        setOnFinishListener(mInfiniteListener);
+    }
+
     /**
      * View启动状态
      * <p/>
@@ -98,7 +116,7 @@ public class SimpleLineView extends View implements Action {
     }
 
     public void stop() {
-
+        mIsFinish = true;
         mStatus = STATUS_STOP;
         if (mCurrentPainter != null) {
             mCurrentPainter.stop();
