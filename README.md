@@ -24,7 +24,7 @@ allprojects {
 }
 
 dependencies {
-	implementation 'com.github.XingdongYu:SimpleLineView:v1.0.2'
+	implementation 'com.github.XingdongYu:SimpleLineView:v1.0.3'
 }
 ```
 #### Maven
