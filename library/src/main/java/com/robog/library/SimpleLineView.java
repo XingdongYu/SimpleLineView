@@ -2,6 +2,7 @@ package com.robog.library;
 
 import android.content.Context;
 import android.graphics.Canvas;
+import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
 import android.util.Log;
@@ -65,11 +66,6 @@ public class SimpleLineView extends View implements Action {
         }
     };
 
-    public void infinite() {
-        mIsFinish = false;
-        setOnFinishListener(mInfiniteListener);
-    }
-
     /**
      * View启动状态
      * <p/>
@@ -125,6 +121,19 @@ public class SimpleLineView extends View implements Action {
 
     public boolean isRunning() {
         return mTaskPainter.isRunning();
+    }
+
+    public SimpleLineView infinite() {
+        mIsFinish = false;
+        setOnFinishListener(mInfiniteListener);
+        return this;
+    }
+
+    public SimpleLineView setPaint(Paint paint) {
+        for (Painter painter : mPainters) {
+            painter.setPaint(paint);
+        }
+        return this;
     }
 
     public SimpleLineView addPainter(Painter painter) {

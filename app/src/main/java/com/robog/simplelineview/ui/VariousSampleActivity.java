@@ -2,6 +2,7 @@ package com.robog.simplelineview.ui;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Paint;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.View;
@@ -130,6 +131,9 @@ public class VariousSampleActivity extends AppCompatActivity {
         mView5 = findViewById(R.id.view5);
         mView6 = findViewById(R.id.view6);
 
+        Paint paint = mCiclePainter.getPaint();
+        paint.setStrokeWidth(4);
+
         mView1.addPainter(mDoublemCiclePainter)
                 .addPainter(mTrianglePainter)
                 .addPainter(mReverseTrianglePainter);
@@ -137,6 +141,7 @@ public class VariousSampleActivity extends AppCompatActivity {
                 .addPainter(mLeftChaPainter)
                 .addPainter(mRightChaPainter)
                 .addPainter(new DelayPainter(500))
+                .setPaint(paint)
                 .infinite();
         mView3.addPainter(mCloseStarPainter);
         mView4.addPainter(mOpenStarPainter);
