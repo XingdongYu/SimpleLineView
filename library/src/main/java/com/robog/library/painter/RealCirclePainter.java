@@ -2,6 +2,7 @@ package com.robog.library.painter;
 
 import android.graphics.Canvas;
 import android.graphics.RectF;
+import android.os.SystemClock;
 
 import com.robog.library.Action;
 import com.robog.library.PixelPoint;
@@ -169,12 +170,7 @@ public class RealCirclePainter extends AbstractPainter implements CirclePainter 
     private boolean update(Action action, PixelPoint point, float angle) {
         point.setAngle(angle);
         action.update(this);
-        try {
-            Thread.sleep(INTERVAL);
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-            return false;
-        }
+        SystemClock.sleep(INTERVAL);
         return true;
     }
 

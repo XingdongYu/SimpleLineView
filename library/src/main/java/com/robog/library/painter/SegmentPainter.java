@@ -1,6 +1,7 @@
 package com.robog.library.painter;
 
 import android.graphics.Canvas;
+import android.os.SystemClock;
 
 import com.robog.library.Action;
 import com.robog.library.PixelPoint;
@@ -149,12 +150,7 @@ public class SegmentPainter extends AbstractPainter {
                 }
                 // 更新界面
                 action.update(this);
-                try {
-                    Thread.sleep(INTERVAL);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                    return false;
-                }
+                SystemClock.sleep(INTERVAL);
             }
             // 保证图像都绘制
             action.update(this);

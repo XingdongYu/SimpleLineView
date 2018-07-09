@@ -5,7 +5,6 @@ import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.support.annotation.Nullable;
 import android.util.AttributeSet;
-import android.util.Log;
 import android.view.View;
 
 import com.robog.library.painter.Painter;
@@ -33,7 +32,7 @@ public class SimpleLineView extends View implements Action {
     /**
      * 保存painter对应当point对象，避免进度条拖动时频繁创建对象
      */
-    private final Map<Painter, List<PixelPoint>> mPointPool = new HashMap<>();
+    private static final Map<Painter, List<PixelPoint>> POINT_POOL = new HashMap<>();
 
     private final List<Painter> mPainters = new ArrayList<>();
 
@@ -85,7 +84,7 @@ public class SimpleLineView extends View implements Action {
         super(context, attrs, defStyleAttr);
 
         // 默认在线程中
-        mTaskPainter = new TaskPainter(mPointPool);
+        mTaskPainter = new TaskPainter(POINT_POOL);
         mPainters.add(mTaskPainter);
         mChain = new RealChain(mPainters, 0, this);
 
@@ -217,21 +216,17 @@ public class SimpleLineView extends View implements Action {
 
     @Override
     public List<PixelPoint> fetchCoordinate(Painter painter) {
-
-        List<PixelPoint> pixelPoints = mPointPool.get(painter);
+        List<PixelPoint> pixelPoints = POINT_POOL.get(painter);
 
         if (pixelPoints != null) {
-
             return pixelPoints;
-
         }
 
         pixelPoints = new ArrayList<>();
         Utils.setPoint(painter, pixelPoints, mWidth, mHeight);
-        mPointPool.put(painter, pixelPoints);
+        POINT_POOL.put(painter, pixelPoints);
 
         return pixelPoints;
-
     }
 
 }
