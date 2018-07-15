@@ -1,6 +1,6 @@
 ## SimpleLineView
 
-介绍: http://blog.csdn.net/kobeyxd123/article/details/79346263
+[介绍](https://xingdongyu.github.io/2018/07/15/simple-line-view/#more)
 
 这里简单借鉴了OkHttp的责任链模式，整体架构图如下：
 ![image](https://github.com/XingdongYu/SimpleLineView/blob/master/art/diagram.png)
