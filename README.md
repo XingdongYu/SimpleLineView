@@ -12,37 +12,13 @@
 
 使用
 ---
-[![](https://jitpack.io/v/XingdongYu/SimpleLineView.svg)](https://jitpack.io/#XingdongYu/SimpleLineView)
-
+ [ ![Download](https://api.bintray.com/packages/robog/Maven/SimpleLineView/images/download.svg) ](https://bintray.com/robog/Maven/SimpleLineView/1.0.3)
 #### Gradle
 ```
-allprojects {
-	repositories {
-		...
-		maven { url 'https://jitpack.io' }
-	}
-}
-
 dependencies {
-	implementation 'com.github.XingdongYu:SimpleLineView:v1.0.3'
+	implementation 'com.robog:SimpleLineView:1.0.3'
 }
 ```
-#### Maven
-```
-<repositories>
-	<repository>
-	    <id>jitpack.io</id>
-	    <url>https://jitpack.io</url>
-	</repository>
-</repositories>
-
-<dependency>
-    <groupId>com.github.XingdongYu</groupId>
-    <artifactId>SimpleLineView</artifactId>
-    <version>v1.0.0</version>
-</dependency>
-```
-
 添加路径
 ---
 ```

@@ -1,8 +1,8 @@
 package com.robog.library.painter;
 
 /**
- * @Author: yuxingdong
- * @Time: 2018/2/11
+ * Author: yuxingdong
+ * Time: 2018/2/11
  */
 
 public interface CirclePainter extends Painter {

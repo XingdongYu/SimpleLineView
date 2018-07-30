@@ -17,8 +17,8 @@ import java.util.Map;
 import java.util.concurrent.Executor;
 
 /**
- * @Author: yuxingdong
- * @Time: 2018/2/9
+ * Author: yuxingdong
+ * Time: 2018/2/9
  */
 
 public class SimpleLineView extends View implements Action {

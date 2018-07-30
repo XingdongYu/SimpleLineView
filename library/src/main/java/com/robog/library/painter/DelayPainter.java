@@ -9,8 +9,8 @@ import com.robog.library.Chain;
 import com.robog.library.PixelPath;
 
 /**
- * @Author: yuxingdong
- * @Time: 2018/2/10
+ * Author: yuxingdong
+ * Time: 2018/2/10
  */
 
 public class DelayPainter implements Painter {

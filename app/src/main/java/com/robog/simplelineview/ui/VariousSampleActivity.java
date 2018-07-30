@@ -25,7 +25,7 @@ import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 /**
- * @author yuxingdong
+ * Author: yuxingdong
  */
 public class VariousSampleActivity extends AppCompatActivity {
 

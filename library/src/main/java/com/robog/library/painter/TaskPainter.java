@@ -23,8 +23,8 @@ import java.util.concurrent.atomic.AtomicInteger;
 import static com.robog.library.SimpleLineView.STATUS_START;
 
 /**
- * @Author: yuxingdong
- * @Time: 2018/2/9
+ * Author: yuxingdong
+ * Time: 2018/2/9
  */
 
 public class TaskPainter extends DelayPainter {

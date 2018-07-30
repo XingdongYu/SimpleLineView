@@ -1,8 +1,8 @@
 package com.robog.library;
 
 /**
- * @Author: yuxingdong
- * @Time: 2018/2/9
+ * Author: yuxingdong
+ * Time: 2018/2/9
  */
 
 public class PixelPath {

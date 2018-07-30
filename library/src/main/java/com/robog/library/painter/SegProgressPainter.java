@@ -6,8 +6,8 @@ import com.robog.library.PixelPath;
 import com.robog.library.Utils;
 
 /**
- * @Author: yuxingdong
- * @Time: 2018/2/10
+ * Author: yuxingdong
+ * Time: 2018/2/10
  */
 
 public class SegProgressPainter extends SegmentPainter {

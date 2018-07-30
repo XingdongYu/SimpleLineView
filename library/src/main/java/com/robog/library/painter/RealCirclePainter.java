@@ -9,8 +9,8 @@ import com.robog.library.PixelPoint;
 import com.robog.library.PixelPath;
 
 /**
- * @Author: yuxingdong
- * @Time: 2018/2/9
+ * Author: yuxingdong
+ * Time: 2018/2/9
  */
 
 public class RealCirclePainter extends AbstractPainter implements CirclePainter {

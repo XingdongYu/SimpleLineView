@@ -8,8 +8,8 @@ import com.robog.library.painter.RealCirclePainter;
 /**
  * 自定义可同时画圆的Painter
  *
- * @Author: yuxingdong
- * @Time: 2018/2/13
+ * Author: yuxingdong
+ * Time: 2018/2/13
  */
 
 public class DoubleCirclePainter extends RealCirclePainter {

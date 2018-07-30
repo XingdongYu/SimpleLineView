@@ -5,8 +5,8 @@ import com.robog.library.painter.Painter;
 import java.util.List;
 
 /**
- * @Author: yuxingdong
- * @Time: 2018/2/10
+ * Author: yuxingdong
+ * Time: 2018/2/10
  */
 
 public interface Chain {

@@ -9,8 +9,8 @@ import com.robog.library.PixelPath;
 import com.robog.library.Utils;
 
 /**
- * @Author: yuxingdong
- * @Time: 2018/2/9
+ * Author: yuxingdong
+ * Time: 2018/2/9
  */
 
 public class SegmentPainter extends AbstractPainter {

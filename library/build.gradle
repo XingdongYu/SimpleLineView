@@ -1,4 +1,16 @@
 apply plugin: 'com.android.library'
+apply plugin: 'com.novoda.bintray-release'
+
+def siteUrl = 'https://github.com/XingdongYu/SimpleLineView'
+publish {
+    userOrg = 'robog'
+    repoName = 'Maven'
+    groupId = 'com.robog'
+    artifactId = 'SimpleLineView'
+    publishVersion = '1.0.3'
+    desc = '可以定制一些简单的路径，按想要的绘制顺序添加，SimpleLineView会依次展现路径动画。'
+    website = siteUrl
+}
 
 android {
     compileSdkVersion 26
@@ -29,6 +41,6 @@ dependencies {
 
     implementation 'com.android.support:appcompat-v7:26.1.0'
     testImplementation 'junit:junit:4.12'
-    androidTestImplementation 'com.android.support.test:runner:1.0.1'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.1'
+    androidTestImplementation 'com.android.support.test:runner:1.0.2'
+    androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
 }

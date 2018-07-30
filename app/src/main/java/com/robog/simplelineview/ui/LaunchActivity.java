@@ -8,8 +8,8 @@ import android.view.View;
 import com.robog.simplelineview.R;
 
 /**
- * @Author: yuxingdong
- * @Time: 2018/2/16
+ * Author: yuxingdong
+ * Time: 2018/2/16
  */
 
 public class LaunchActivity extends AppCompatActivity {
